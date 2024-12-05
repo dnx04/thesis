@@ -142,7 +142,7 @@
       level: 3
     ): it => {
       v(20pt, weak: true)
-      h(3.5em)
+      h(3.6em)
       if (it.element.numbering != none) {
         let number = numbering(it.element.numbering, ..counter(heading).at(it.element.location()))
         box(width: 2.4em, number)
