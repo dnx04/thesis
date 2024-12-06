@@ -2,9 +2,7 @@
 
 #show: project.with(
   title: "Tích hợp các phép biến hình cấu trúc cây cải tiến suy luận tiến hóa theo tiêu chuẩn parsimony trong MPBoot",
-  authors: (
-    (name: "Huỳnh Tiến Dũng"),
-  ), 
+  authors: ((name: "Huỳnh Tiến Dũng"),),
 )
 
 #include "src/05_bang_thuat_ngu.typ"

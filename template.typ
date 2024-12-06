@@ -5,19 +5,14 @@
 
 #let outline_algo(x, caption, label) = {
   return [
-    #figure(
-      x,
-      kind: "algo",
-      supplement: [Thuật toán],
-      caption: caption,
-    ) #label
+    #figure(x, kind: "algo", supplement: [Thuật toán], caption: caption) #label
   ]
 }
 #let heading_numbering(..nums) = {
   return str(counter(heading).get().first()) + "." + nums
-    .pos()
-    .map(str)
-    .join(".")
+  .pos()
+  .map(str)
+  .join(".")
 }
 #let first_line_indent_all_body = (body) => {
   // Iterate through the children of the body
@@ -37,7 +32,9 @@
 
 #let numbered_equation(content, label) = {
   return [
-    #set math.equation(numbering: (..nums) => "(" + str(counter(heading).get().first()) + "." + nums.pos().map(str).join(".") + ")")  
+    #set math.equation(
+      numbering: (..nums) => "(" + str(counter(heading).get().first()) + "." + nums.pos().map(str).join(".") + ")",
+    )
     #content
     #label
   ]
@@ -45,44 +42,17 @@
 #let output_box(content) = {
   showybox(
     breakable: true,
-    frame: (
-      border-color: gray,
-      title-color: gray.lighten(80%),
-      radius: 0pt
-    ),
-    title-style: (
-      color: black,
-      boxed-style: (
-        anchor: (
-          x: left,
-          y: horizon
-        ),
-        radius: 0pt,
-      )
-    ),
+    frame: (border-color: gray, title-color: gray.lighten(80%), radius: 0pt),
+    title-style: (color: black, boxed-style: (anchor: (x: left, y: horizon), radius: 0pt)),
     title: "Output",
-    content
+    content,
   )
 }
 // Project part
-#let project(
-  title: "", 
-  authors: (), 
-  body
-  ) = {
+#let project(title: "", authors: (), body) = {
   // Set the document's basic properties.
-  set document(
-    author: authors.map(a => a.name), 
-    title: title)
-  set page(
-    paper: "a4",
-    margin: (
-      top: 2.5cm,
-      bottom: 3cm,
-      left: 3cm,
-      right: 2cm
-    )
-  )
+  set document(author: authors.map(a => a.name), title: title)
+  set page(paper: "a4", margin: (top: 2.5cm, bottom: 3cm, left: 3cm, right: 2cm))
   // set text(font: "SVN-Times New Roman", lang: "vi", size: 13pt)
   set text(font: "New Computer Modern", lang: "vi", size: 13pt)
   set par(justify: true)
@@ -90,7 +60,7 @@
   trang_bia(title, authors)
   trang_phu_bia(title, authors)
   // =================================================
-  
+
   counter(page).update(0)
   set page(numbering: "i")
   include "src/02_loi_cam_doan.typ"
@@ -107,9 +77,9 @@
       block([
         #set par(first-line-indent: 0pt)
         #text(35pt, counter(heading).display())
-        
+
         #text(35pt, it.body)
-    
+
         #v(1cm)
       ])
     }
@@ -117,47 +87,43 @@
 
   // ================= Muc Luc =====================
   {
-    show outline.entry.where(
-      level: 1
-    ): it => {
+    show outline.entry.where(level: 1): it => {
       v(20pt, weak: true)
-      strong({
-        if (it.element.numbering != none) {
-          let number = numbering(it.element.numbering, ..counter(heading).at(it.element.location()))
-          box(width: 5em, number) + ". "
-        }
-        link(it.element.location())[#it.element.body]
-        h(3pt)
-        box(width: 1fr, it.fill)
-        h(3pt)
-        link(it.element.location())[#it.page]
-      })
+      strong(
+        {
+          if (it.element.numbering != none) {
+            let number = numbering(it.element.numbering, ..counter(heading).at(it.element.location()))
+            box(width: 5em, number) + ". "
+          }
+          link(it.element.location())[#it.element.body]
+          h(3pt)
+          box(width: 1fr, it.fill)
+          h(3pt)
+          link(it.element.location())[#it.page]
+        },
+      )
     }
-    show outline.entry.where(
-      level: 2
-    ): it => {
+    show outline.entry.where(level: 2): it => {
       v(20pt, weak: true)
       h(1.5em)
       if (it.element.numbering != none) {
         let number = numbering(it.element.numbering, ..counter(heading).at(it.element.location()))
         box(width: 1.7em, number)
       }
-      link(it.element.location())[ #it.element.body]
+      link(it.element.location())[ #it.element.body ]
       h(3pt)
       box(width: 1fr, it.fill)
       h(3pt)
       link(it.element.location())[#it.page]
     }
-    show outline.entry.where(
-      level: 3
-    ): it => {
+    show outline.entry.where(level: 3): it => {
       v(20pt, weak: true)
       h(3.6em)
       if (it.element.numbering != none) {
         let number = numbering(it.element.numbering, ..counter(heading).at(it.element.location()))
         box(width: 2.4em, number)
       }
-      link(it.element.location())[ #it.element.body]
+      link(it.element.location())[ #it.element.body ]
       h(3pt)
       box(width: 1fr, it.fill)
       h(3pt)
@@ -192,16 +158,12 @@
   {
     // citation dup in caption
     // https://github.com/typst/typst/issues/1880
-    set footnote.entry(
-      separator: none
-    )
+    set footnote.entry(separator: none)
     show footnote.entry: hide
     show ref: none
     show footnote: none
 
-    show outline.entry.where(
-      level: 1
-    ): it => {
+    show outline.entry.where(level: 1): it => {
       v(20pt, weak: true)
       link(it.element.location())[#it.element.caption]
       h(3pt)
@@ -215,10 +177,7 @@
     }
     align(center, text(16pt, [*DANH MỤC HÌNH ẢNH*]))
     v(7pt)
-    outline(
-      title: none,
-      target: figure.where(kind: image),
-    )
+    outline(title: none, target: figure.where(kind: image))
     pagebreak()
     {
       show heading: none
@@ -226,10 +185,7 @@
     }
     align(center, text(16pt, [*DANH MỤC BẢNG*]))
     v(7pt)
-    outline(
-      title: none,
-      target: figure.where(kind: table),
-    )
+    outline(title: none, target: figure.where(kind: table))
     pagebreak()
     {
       show heading: none
@@ -237,19 +193,15 @@
     }
     align(center, text(16pt, [*DANH MỤC GIẢI THUẬT*]))
     v(7pt)
-    outline(
-      title: none,
-      target: figure.where(kind: "algo"),
-    )
+    outline(title: none, target: figure.where(kind: "algo"))
     pagebreak()
   }
-  
 
   // ===============================================
 
   // set page(header: [
   //   #set text(luma(130), size: 12pt)
-    
+
   //   #context {
   //     // Find if there is a level 1 heading on the current page
   //     let nextMainHeading = query(selector(heading).after(here())).find(headIt => {
@@ -282,14 +234,12 @@
   //   )
   // ])
 
-
   // show heading: set text(13pt)
-
 
   set par(leading: 0.8em, spacing: 1.5em)
   set block(spacing: 1.2em)
   set list(indent: 0.8em)
-  show heading: set block(spacing: 1.5em) 
+  show heading: set block(spacing: 1.5em)
   show link: set text(fill: rgb("#0028d9"))
   show ref: it => {
     if it.element == none {
@@ -303,77 +253,60 @@
     show regex("\d+"): set text(rgb("#0028d9"))
     it
   }
-  set figure.caption(
-    separator: [ --- ]
-  )
-  set figure(
-    gap: 3pt,
-    numbering: heading_numbering
-  )
+  set figure.caption(separator: [ --- ])
+  set figure(gap: 3pt, numbering: heading_numbering)
 
-  show figure.where(
-    kind: figure
-  ): set figure(
-    gap: 15pt,
-    numbering: heading_numbering
-  )
+  show figure.where(kind: image): set figure(gap: 15pt, numbering: heading_numbering)
   show figure.caption: c => [
     #context text(weight: "bold")[
-      #c.supplement #c.counter.display(c.numbering)
+    #c.supplement #c.counter.display(c.numbering)
     ]
     #c.separator#c.body
     #v(0.4cm)
   ]
-  show figure.where(
-    kind: table
-  ): set figure.caption(position: top)
-  show figure.where(
-    kind: "algo"
-  ): set figure.caption(position: top)
+  show figure.where(kind: table): set figure.caption(position: top)
+  show figure.where(kind: "algo"): set figure.caption(position: top)
 
-  show raw.where(block: false): it => {
-    text(fill: rgb("#912583"), it)
-  }
-  
+  show raw.where(block: false): box.with(
+    fill:  luma(240), 
+    stroke: rgb(239, 240, 243),
+    inset: (x: 3pt, y: 1pt),
+    outset: (y: 3pt),
+    radius: 3pt,
+  )
 
   show: codly-init.with()
+  show raw.where(block: true, lang: "sh"): it => {
+    codly(
+      number-format: none,
+      display-icon: false,
+      display-name: false,
+    )
+    it
+  }
   show raw.where(block: true, lang: "py"): it => {
     codly(
       display-icon: false,
       display-name: false,
-      languages: (
-        py: (
-          name: "Python",
-          color: rgb("#CE412B")
-        ),
-      )
+      languages: (py: (name: "Python", color: rgb("#CE412B"))),
     )
-    it 
+    it
   }
   show raw.where(block: true, lang: "python"): it => {
     codly(
       display-icon: true,
       display-name: true,
-      languages: (
-        python: (
-          name: "Python",
-          icon: "🐍 ",
-          color: rgb("#CE412B")
-        ),
-      )
+      languages: (python: (name: "Python", icon: "🐍 ", color: rgb("#CE412B"))),
     )
-    it 
-
+    it
   }
-  
+
   // ============ MATH ==============
   set math.cases(gap: 1.2em)
   set math.equation(supplement: none)
 
-
   body
 }
 
-#let dfrac(x,y) = math.equation(block(inset:(top:0.5em,bottom:0.8em))[#text(size:18pt)[#math.frac(x,y)]])
-
+#let dfrac(x, y) = math.equation(block(inset: (top: 0.5em, bottom: 0.8em))[#text(size: 18pt)[#math.frac(x, y)]])
 
