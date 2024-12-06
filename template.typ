@@ -3,6 +3,16 @@
 #import "src/01_trang_phu_bia.typ": trang_phu_bia
 #import "@preview/codly:1.0.0": *
 
+#let outline_algo(x, caption, label) = {
+  return [
+    #figure(
+      x,
+      kind: "algo",
+      supplement: [Thuật toán],
+      caption: caption,
+    ) #label
+  ]
+}
 #let heading_numbering(..nums) = {
   return str(counter(heading).get().first()) + "." + nums
     .pos()
@@ -221,6 +231,17 @@
       target: figure.where(kind: table),
     )
     pagebreak()
+    {
+      show heading: none
+      heading(numbering: none)[Danh mục giải thuật]
+    }
+    align(center, text(16pt, [*DANH MỤC GIẢI THUẬT*]))
+    v(7pt)
+    outline(
+      title: none,
+      target: figure.where(kind: "algo"),
+    )
+    pagebreak()
   }
   
 
@@ -286,6 +307,13 @@
     separator: [ --- ]
   )
   set figure(
+    gap: 3pt,
+    numbering: heading_numbering
+  )
+
+  show figure.where(
+    kind: figure
+  ): set figure(
     gap: 15pt,
     numbering: heading_numbering
   )
@@ -298,6 +326,9 @@
   ]
   show figure.where(
     kind: table
+  ): set figure.caption(position: top)
+  show figure.where(
+    kind: "algo"
   ): set figure.caption(position: top)
 
   show raw.where(block: false): it => {
