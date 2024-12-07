@@ -23,7 +23,7 @@ Chúng tôi đề xuất thuật toán MPBoot-RL để tăng cường pha khám 
 Cấu trúc đồ thị bao gồm một đỉnh khởi đầu $V_s$, một đỉnh kết thúc $V_e$ và một lớp giữa. Lớp này bao gồm ba đỉnh biểu diễn việc sử dụng các thuật toán leo đồi NNI, SPR và TBR. Đỉnh khởi đầu $V_s$ sẽ có các cạnh kết nối với ba đỉnh của lớp giữa. Cuối cùng, các đỉnh trong lớp sẽ kết nối với đỉnh kết thúc $V_e$. Tổng cộng, mạng bao gồm 5 đỉnh và 6 cạnh (xem @network-aco). 
 
 #figure(
-  image("/images/network.png"),
+  image("/images/network.png", width: 50%),
   caption: [Cấu trúc đồ thị ACO],
 ) <network-aco>
 
@@ -61,7 +61,7 @@ $ tau_e arrow.l.long (1- rho) dot.c tau_e + rho dot.c tau_"max" space space "(l�
 
 Các cạnh không đóng góp vào bất kỳ giải pháp được chọn nào vẫn tuân theo quy tắc cập nhật SMMAS gốc, được cập nhật một lần đến mức pheromone tối thiểu $tau_"min"$.
 
-Bằng cách cho phép các cạnh tích lũy cập nhật dựa trên sự tham gia của chúng trong các giải pháp được chọn, cơ chế cập nhật SMMAS-multiple củng cố sự ảnh hưởng của các cạnh liên quan đến các giải pháp đã thể hiện thành công liên tục qua nhiều vòng lặp.
+Bằng cách cho phép các cạnh tích lũy cập nhật dựa trên sự đóng góp của chúng trong các giải pháp được chọn, cơ chế cập nhật SMMAS-multiple củng cố sự ảnh hưởng của các cạnh liên quan đến các giải pháp đã thể hiện thành công liên tục qua nhiều vòng lặp.
 
 === Quy trình bước đi ngẫu nhiên để xây dựng giải pháp
 
@@ -72,10 +72,87 @@ trong đó:
 - $"prob"_(A arrow.r B)$ là xác suất con kiến ở đỉnh $A$ di chuyển đến đỉnh $B$.
 - $tau_(A arrow.r B)$ là mức độ pheromone của cạnh từ $A$ đến $B$.
 - $eta_B$ là thông tin heuristic của đỉnh $B$.
-- $"adj"(A)$ là tập các đỉnh nối với $A$.
+- $"adj"(A)$ là tập các đỉnh mà $A$ nối tới.
 
 === Cài đặt
 
+MPBoot-RL được triển khai bằng C/C++ như một chương trình dòng lệnh mã nguồn mở, dựa trên mã nguồn mở của MPBoot2. Dòng lệnh để chạy tìm kiếm cây đơn giản của MPBoot-RL với chiến lược SMMAS-multiple (hay ACO-MUL) trên MSA gốc được chỉ định bởi "`<alignment_file>`", có cú pháp như sau: 
+
+```sh
+$ mpboot -s <alignment_file> -aco
+```
+Cú pháp để tìm kiếm với chiến lược SMMAS gốc (hay ACO-ONCE) là:
+```sh
+$ mpboot -s <alignment_file> -aco -aco_once
+```
+Cú pháp đầy đủ để tìm kiếm với các tham số tùy chỉnh:
+
+```sh
+$ mpboot -s <alignment_file> -aco -aco_nni_prior 0.3 -aco_spr_prior 0.4 -aco_tbr_prior 0.4 -aco_evaporation_rate 0.25 -aco_update_iter 15 
+```
+Để thực hiện MP bootstrapping với $B$ pseudo-replicates, thêm "`-bb <B>`" vào dòng lệnh.
 == Đánh giá thực nghiệm
 === Cài đặt thực nghiệm
+
+Chúng tôi so sánh hai phiên bản của MPBoot-RL (ACO-MUL (sử dụng quy tắc cập nhật mùi SMMAS-multiple) và ACO-ONCE (sử dụng quy tắc cập nhật mùi SMMAS gốc)) với các phương pháp được đề cập ở @mpboot2-settings. Các phiên bản MPBoot-RL sử dụng SPR với bán kính 6 (SPR6) và TBR với bán kính 5 (TBR5). Chúng tôi thử nghiệm hai phiên bản trên với nhiều tập siêu tham số khác nhau nhưng chỉ trình bày ở đây bộ siêu tham số cho kết quả tốt nhất đối với từng phiên bản. Tổng hợp kết quả của các tập siêu tham số khác nhau được trình bày ở @pl-aco
+
+#[]
+Đối với ACO-MUL:
+- Độ bay hơi: $rho = 0.25$
+- Thông tin heuristic: $eta_"NNI" = 0.3, eta_"SPR" = 0.4, eta_"TBR" = 0.4$
+- Số lượng kiến ở mỗi thế hệ: $L = 15 + ceil(n/100)$ trong đó $n$ là số lượng taxa của sắp hàng gốc. Dễ thấy, số kiến được điều chỉnh động dựa trên kích thước của MSA đầu vào.
+Đối với ACO-ONCE:
+- Độ bay hơi: $rho = 0.1$
+- Thông tin heuristic: $eta_"NNI" = 0.3, eta_"SPR" = 0.4, eta_"TBR" = 0.4$
+- Số lượng kiến ở mỗi thế hệ: $L = 5 + ceil(n/100)$ trong đó $n$ là số lượng taxa của sắp hàng gốc. Dễ thấy, số kiến được điều chỉnh động dựa trên kích thước của MSA đầu vào.
+
+#[]
+Các thí nghiệm được tiến hành bằng dữ liệu mô phỏng và dữ liệu sinh học (70 bộ DNAs và 45 bộ protein) như đề cập ở @mpboot2-dataset trên hệ thống tính toán hiệu suất cao tại trường Đại học Công nghệ - Đại học Quốc gia Hà Nội. Các tiêu chí đánh giá cũng đã được đề cập ở @mpboot2-crit.
+
+MPBoot-RL được công khai mã nguồn tại địa chỉ Github #link("https://github.com/HynDuf/mpboot/tree/mpboot-rl")[https://github.com/HynDuf/mpboot/tree/mpboot-rl].
+
+=== Kết quả
+==== Điểm MP
+
+Kết quả về điểm MP của 2 phương pháp MPBoot-RL với các phương pháp khác được trình bày trong @treebase-aco. ACO-MUL hầu hết đạt được điểm MP tốt nhất so với các phương pháp khác của MPBoot, chỉ thua TBR6 ở dữ liệu DNA với chi phí không đồng nhất. Trong khi đó, ACO-ONCE có số bộ dữ liệu đạt điểm MP tốt nhất ngang với TBR5-SC100, nhỉnh hơn TBR5-SC100 một bộ dữ liệu DNA với chi phí không đồng nhất.
+
+#figure(
+  image("/images/treebase_4_aco.png"),
+  caption: [Hiệu suất của các phương pháp đánh giá trên bộ dữ liệu DNA và protein từ TreeBASE. Các biểu đồ cột thể hiện số lượng bộ dữ liệu (trong tổng số 115 bộ) mà phương pháp đạt được điểm số tốt nhất trong số các phương pháp khảo sát.],
+) <treebase-aco>
+
+==== Thời gian thực thi
+
+Trong @tab-time-aco, dễ thấy ACO-MUL và ACO-ONCE là hai trong những phiên bản có thời gian thực thi nhanh nhất (ACO-ONCE nhanh hơn ACO-MUL nhưng không nhiều). Với điều kiện chi phí đồng nhất, hai phiên bản này chỉ chậm hơn một ít so với TBR5-SC100 (31,5 giờ (ACO-MUL) và 30,6 giờ (ACO-ONCE) so với 30,2 giờ (TBR5-SC100)). Không những thế, với điều kiện chi phí không đồng nhất, ACO-MUL và ACO-ONCE là hai phiên bản có thời gian thực thi nhanh nhất. Khi tính tỷ số thời gian chạy với phiên bản SPR6, cả hai phương pháp ACO đều cho thấy tốc độ tính toán nhanh hơn ($approx 0,78$ với điều kiện chi phí đồng nhât và $approx 0,84$ với điều kiện chi phí không đồng nhất).
+
+#figure(
+  table(
+    columns: (2fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
+    inset: 7pt,
+    align: (left, horizon, horizon, horizon, horizon, horizon, horizon),
+    table.cell(rowspan: 2, align: horizon + center)[*Method*], table.cell(colspan: 3)[*Uniform cost*], table.cell(colspan: 3)[*Non-uniform cost*],
+    [Time (hours)], [Mean], [Median], [Time (hours)], [Mean], [Median],
+    [*ACO-MUL*], [*31.5*], [*0.79*], [*0.79*], [*144.7*], [*0.85*], [*0.84*],
+    [*ACO-ONCE*], [*30.6*], [*0.78*], [*0.79*], [*141.0*], [*0.85*], [*0.84*],
+    [SPR6], [37.2], [1.00], [1.00], [146.8], [1.00], [1.00],
+    [TBR5-SC100], [30.2], [1.04], [0.96], [192.8], [1.26], [1.17],
+    [TBR5], [54.5], [1.42], [1.43], [240.1], [1.52], [1.52],
+    [TBR5-BETTER], [67.3], [1.62], [1.60], [269.3], [1.72], [1.71],
+    [TBR6], [78.2], [1.98], [1.96], [338.8], [2.21], [2.18],
+    [TNT], [75.5], [1.23], [0.47], [682.3], [6.47], [3.55],
+  ), 
+  caption: [Thời gian chạy tổng cộng (giờ) và tỷ lệ thời gian (so với SPR6) của các phương pháp trên 115 bộ dữ liệu từ bộ dữ liệu TreeBASE]
+) <tab-time-aco>
+
+Từ các thông số trên, có thể thấy ACO-MUL có khả năng tối ưu điểm MP tốt ngang ngửa với TBR6 nhưng tốc độ thực thi nhanh gấp $approx 2.3$ lần so với TBR6. Chi tiết các phân tích về điểm số và thời gian giữa các phương pháp được trình bày bổ sung ở @pl-aco-1
+
+==== Độ chính xác bootstrap
+
+Hàm $f_("SPR6")(v)$ (đường màu đen), hàm $f_("ACO-MUL")(v)$ (đường màu cam) và hàm $f_("ACO-ONCE")(v)$ (đường màu xanh) cho 5 bộ YuleHarding được minh họa ở @bootstrap-acc-aco. Trong cả 5 đồ thị, 2 đường cong của 2 hàm ACO này nằm sát nhau và cùng nằm phía trên đường chéo cho thấy phiên bản mới cho độ chính xác bootstrap tương đương MPBoot.
+
+#figure(
+  image("/images/bootstrap-aco.png"),
+  caption: [Độ chính xác bootstrap của các phương pháp ACO-MUL (đường màu cam), ACO-ONCE (đường màu xanh) và SPR6 (đường màu đen - của phiên bản MPBoot)],
+) <bootstrap-acc-aco>
+
 #pagebreak()

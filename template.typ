@@ -14,6 +14,13 @@
   .map(str)
   .join(".")
 }
+
+#let phuluc_numbering(..nums) = {
+  return str.from-unicode(counter(heading).get().at(1) + 64) + "." + nums
+  .pos()
+  .map(str)
+  .join(".")
+}
 #let first_line_indent_all_body = (body) => {
   // Iterate through the children of the body
   for (ie, elem) in body.children.enumerate() {
@@ -95,8 +102,7 @@
             let number = numbering(it.element.numbering, ..counter(heading).at(it.element.location()))
             box(width: 5em, number) + ". "
           }
-          link(it.element.location())[#it.element.body]
-          h(3pt)
+          link(it.element.location())[#it.element.body ]
           box(width: 1fr, it.fill)
           h(3pt)
           link(it.element.location())[#it.page]
@@ -111,7 +117,6 @@
         box(width: 1.7em, number)
       }
       link(it.element.location())[ #it.element.body ]
-      h(3pt)
       box(width: 1fr, it.fill)
       h(3pt)
       link(it.element.location())[#it.page]
@@ -124,7 +129,6 @@
         box(width: 2.4em, number)
       }
       link(it.element.location())[ #it.element.body ]
-      h(3pt)
       box(width: 1fr, it.fill)
       h(3pt)
       link(it.element.location())[#it.page]

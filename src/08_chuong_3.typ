@@ -25,7 +25,7 @@ nhờ leo đồi SPR trên từng MSA bootstrap.
   caption: [Một vòng lặp trong pha khám phá (pha 2) của khung thuật toán MPBoot.],
 ) <mpboot-iter>
 
-== Việc áp dụng các phép biến đổi cây trong thuật toán MPBoot gốc
+== Việc áp dụng phép biến đổi cây trong thuật toán MPBoot gốc
 
 Như vậy trong MPBoot phép biến đổi cây xuất hiện ở cả 3 pha. Việc tối ưu tất cả những thủ
 tục leo đồi nhờ SPR bằng leo đồi dựa trên một phép biến đổi cây mạnh hơn (ví dụ như TBR)

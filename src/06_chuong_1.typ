@@ -91,8 +91,9 @@ triển nhiều tính năng mới như checkpoint, hỗ trợ dữ liệu khác 
 liệu lớn, và cải tiến các tính năng hiện có để phát triển phiên bản MPBoot2. Để khai thác
 tối đa sức mạnh của các phép biến đổi, khóa luận còn phát triển MPBoot-RL, sử dụng giải
 thuật đàn kiến (Ant Colony Optimization) để kết hợp linh hoạt các phép biến đổi, nhằm tối
-ưu hóa cả điểm số và thời gian tính toán. Đồng thời, khóa luận đề xuất một ánh xạ độ khó
-của dữ liệu dựa trên quá trình tối ưu của thuật toán.
+ưu hóa cả điểm số và thời gian tính toán. 
+
+// Đồng thời, khóa luận đề xuất một ánh xạ độ khó của dữ liệu dựa trên quá trình tối ưu của thuật toán.
 
 == Cấu trúc của khóa luận
 

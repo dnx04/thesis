@@ -27,7 +27,7 @@ Ngoài ra, các cải tiến khác đã được thực hiện để nâng cao h
 Hơn nữa, MPBoot2 hiện hỗ trợ tốt hơn cho nhiều loại dữ liệu khác nhau. Nhiều lỗi đã được sửa để cải thiện khả năng xử lý dữ liệu morphology (thêm tùy chọn "`-st MORPH`") và dữ liệu nhị phân (thêm tùy chọn "`-st BIN`"), đảm bảo các phân tích chính xác và đáng tin cậy hơn trên các định dạng tập dữ liệu khác nhau.
 
 == Đánh giá thực nghiệm trên các bộ dữ liệu vừa và nhỏ
-=== Dữ liệu
+=== Dữ liệu <mpboot2-dataset>
 
 Để đánh giá MPBoot2 trên các bộ dữ liệu thực tế có kích thước nhỏ và trung bình, chúng tôi sử dụng dữ liệu từ TreeBASE @piel2000treebase, như đã được phân tích trước đây bởi @nguyen2015iq. Bộ dữ liệu này bao gồm 115 căn chỉnh dãy trình tự (MSA), trong đó 70 MSA là loại DNA, có kích thước từ 200 đến hơn 700 dãy. 45 MSA còn lại bao gồm các dãy protein (axit amin), với số lượng dãy trong căn chỉnh dao động từ 50 đến gần 200.
 
@@ -37,7 +37,7 @@ Ngoài ra, chúng tôi thử nghiệm MPBoot2 trên 30 bộ dữ liệu morpholo
 
 Cuối cùng, chúng tôi đánh giá MPBoot2 bằng cách sử dụng một bộ dữ liệu nhị phân, được lấy từ nghiên cứu của @chifman2014quartet.
 
-=== Cài đặt thực nghiệm
+=== Cài đặt thực nghiệm <mpboot2-settings>
 
 Chúng tôi so sánh phiên bản SPR gốc (MPBoot phiên bản 1), kí hiệu là SPR6 (leo đồi SPR với bán kính 6), với một số phương pháp từ MPBoot2: TBR5 và TBR6 (leo đồi TBR với bán kính lần lượt là 5 và 6, sử dụng chiến lược mặc định tìm kiếm "tốt nhất"), TBR5-SC100 (TBR5 với điều kiện dừng ngắn hơn là 100 lần lặp không thành công), và TBR5-BETTER (TBR5 sử dụng chiến lược tìm kiếm "tốt hơn"). Tất cả các phương pháp này giữ lại một cây tốt nhất duy nhất cho mỗi bản sao bootstrap. Đối với ma trận chi phí, chúng tôi sử dụng cả ma trận chi phí đồng nhất và không đồng nhất, như được mô tả trong @hoang2018mpboot. Việc phá cây bằng parsimony ratchet trong những iteration chẵn được dùng như nhau trong tất cả các phương pháp. 
 
@@ -45,7 +45,7 @@ Chúng tôi so sánh phiên bản SPR gốc (MPBoot phiên bản 1), kí hiệu 
 
 Thực nghiệm được thực hiện cho cả dữ liệu mô phỏng và dữ liệu sinh học trên hệ thống tính toán hiệu năng cao của Trường Đại học Công Nghệ, ĐHQGHN.
 
-=== Tiêu chí đánh giá
+=== Tiêu chí đánh giá <mpboot2-crit>
 ==== Điểm MP
 
 Chúng tôi trước tiên so sánh các thuật toán theo điểm MP của cây $T^"best"$. Cụ thể, với phương pháp $X$ và dataset $Y$, chúng tôi tính số lượng bộ dữ liệu trong $Y$ mà phương pháp $X$ đạt được điểm số tốt nhất trong số các phương pháp khảo sát.
@@ -65,7 +65,7 @@ Như mô tả trong @fig-treebase-score, hiệu suất của các phương pháp
 
 Đối với dữ liệu protein, điều kiện chi phí đồng nhất cho thấy sự kết quả đồng đều hơn giữa các phương pháp. TNT, TBR5-SC100, TBR5, và TBR5-BETTER đều cho thấy kết quả tương tự, dao động từ 40 đến 41 bộ dữ liệu. Cả TBR6 và SPR6 cũng đạt hiệu suất tương tự trong phạm vi này, cho thấy sự khác biệt tối thiểu giữa các phương pháp đối với dữ liệu protein dưới chi phí đồng nhất. Tuy nhiên, dưới điều kiện chi phí không đồng nhất, TBR6 (42) và TBR5-SC100 (42) là các phương pháp dẫn đầu. Ngược lại, TNT cho thấy sự suy giảm đáng kể về hiệu suất, chỉ đạt được 14 bộ dữ liệu, thấp nhất trong tất cả các phương pháp. Các phương pháp khác, bao gồm TBR5 (42), SPR6 (42), và TBR5-BETTER (42), duy trì hiệu suất ổn định.
 
-Những kết quả này nhấn mạnh sự thay đổi trong hiệu suất của các phương pháp phụ thuộc vào loại bộ dữ liệu và điều kiện chi phí. Phương pháp TNT cho thấy hiệu suất vượt trội với dữ liệu DNA dưới điều kiện chi phí đồng nhất, nhưng hiệu suất giảm mạnh đối với dữ liệu protein dưới điều kiện chi phí không đồng nhất. Mặt khác, các phương pháp TBR\* mang lại độ chính xác cao ổn định trên cả hai loại dữ liệu và điều kiện chi phí, làm nổi bật tính tin cậy và mạnh mẽ của chúng, đặc biệt trong các tình huống yêu cầu hiệu suất ổn định trên các điều kiện khác nhau.
+Những kết quả này cho thấy rõ sự thay đổi trong hiệu suất của các phương pháp phụ thuộc vào kiểu dữ liệu và điều kiện chi phí. Phương pháp TNT cho thấy hiệu suất vượt trội với dữ liệu DNA dưới điều kiện chi phí đồng nhất, nhưng hiệu suất giảm mạnh đối với dữ liệu protein dưới điều kiện chi phí không đồng nhất. Mặt khác, các phương pháp TBR\* mang lại độ chính xác cao ổn định trên cả hai loại dữ liệu và điều kiện chi phí, làm nổi bật tính tin cậy và mạnh mẽ của chúng, đặc biệt trong các tình huống yêu cầu hiệu suất ổn định trên các điều kiện khác nhau.
 
 #figure(
   image("/images/treebase_4.png"),
@@ -83,6 +83,7 @@ Trong điều kiện chi phí không đồng nhất, SPR6 vẫn là phương ph�
 Đáng chú ý, TBR5-SC100 rất hiệu quả trong điều kiện chi phí đồng nhất nhưng kém cạnh tranh hơn trong điều kiện không đồng nhất, như được thể hiện qua cả thời gian chạy và tỷ lệ thời gian.
 
 Tóm lại, TBR5-SC100 và SPR6 là hai phương pháp cân bằng, vừa nhanh vừa cho kết quả đủ tốt. Trong điều kiện chi phí đồng nhất, TBR5-SC100 chạy nhanh hơn SPR6, trong khi ở điều kiện chi phí không đồng nhất, TBR5-SC100 chạy chậm hơn một chút nhưng đạt được điểm MP tốt hơn so với SPR6.
+
 
 #figure(
   table(
@@ -108,8 +109,8 @@ Các thông tin trong @fig-treebase-score và @tab-time-treebase chỉ cung cấ
 Về thời gian chạy, trong điều kiện chi phí không đồng nhất (xem #ref(label("fig-tbr5sc100-tnt"))c và d), TBR5-SC100 chạy nhanh hơn đáng kể so với TNT (77.9% so với 22.1% cho các bộ dữ liệu DNA và 100% so với 0% cho các bộ protein). Tuy nhiên, trong điều kiện chi phí đồng nhất, TNT nhanh hơn so với TBR5-SC100 (xem #ref(label("fig-tbr5sc100-tnt"))a và b).
 
 #figure(
-  image("/images/tbr5_sc100_tnt.png"),
-  caption: [So sánh TBR5-SC100 và TNT trên chi phí đồng nhất (*a*, *b*) và chi phí không đồng nhất (*c*, *d*) trên các MSAs DNA và axit amin từ bộ dữ liệu TreeBASE.],
+  image("/images/tbr5_sc100_tnt.png", width: 95%),
+  caption: [So sánh TBR5-SC100 và TNT trên chi phí đồng nhất (*a*, *b*) và chi phí không đồng nhất (*c*, *d*) trên các MSAs DNA và protein từ TreeBASE.],
 ) <fig-tbr5sc100-tnt>
 
 ==== Độ chính xác bootstrap
@@ -117,14 +118,14 @@ Về thời gian chạy, trong điều kiện chi phí không đồng nhất (xe
 Hàm $f_("SPR6")(v)$ (đường màu đen), hàm $f_("TBR5")(v)$ (đường màu cam) và hàm $f_("TBR5-BETTER")(v)$ (đường màu xanh) cho 5 bộ YuleHarding được minh họa ở @bootstrap-acc. Trong cả 5 đồ thị, 2 đường cong của 2 hàm này nằm sát nhau và cùng nằm phía trên đường chéo cho thấy phiên bản mới cho độ chính xác bootstrap tương đương MPBoot.
 
 #figure(
-  image("/images/bootstrap.png"),
-  caption: [Độ chính xác bootstrap của các phương pháp TBR5 (đường màu cam), TBR5-BETTER (đường màu xanh) và SPR6 (đường màu đen - của phiên bản MPBoot)],
+  image("/images/bootstrap.png", width: 90%),
+  caption: [Độ chính xác bootstrap của các phương pháp TBR5 (đường màu cam), TBR5-BETTER (đường màu xanh) và SPR6 (đường màu đen - phiên bản MPBoot cũ)],
 ) <bootstrap-acc>
 
 ==== Dữ liệu morphology và nhị phân
 
 #figure(
-  image("/images/morp-score.png"),
+  image("/images/morp-score.png", width: 90%),
   caption: [Hiệu suất của các phương pháp đánh giá trên bộ dữ liệu morphology từ TreeBASE. Các biểu đồ cột thể hiện tỉ lệ số bộ dữ liệu (trong tổng số 30 bộ) mà phương pháp đạt được điểm số tốt nhất trong số các phương pháp khảo sát],
 ) <morp-score>
 

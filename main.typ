@@ -5,7 +5,7 @@
   authors: ((name: "Huỳnh Tiến Dũng"),),
 )
 
-#include "src/05_bang_thuat_ngu.typ"
+// #include "src/05_bang_thuat_ngu.typ"
 // #include "chapters/05_trang_thong_tin_do_an_en.typ"
 
 #counter(page).update(1)
@@ -18,6 +18,5 @@
 #include "src/09_chuong_4.typ"
 #include "src/10_chuong_5.typ"
 #include "src/11_ket_luan.typ"
-#include "src/12_phu_luc.typ"
-
 #bibliography("ref.bib", style: "elsevier-vancouver")
+#include "src/12_phu_luc.typ"
