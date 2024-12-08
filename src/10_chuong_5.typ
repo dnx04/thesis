@@ -100,11 +100,11 @@ Chúng tôi so sánh hai phiên bản của MPBoot-RL (ACO-MUL (sử dụng quy 
 Đối với ACO-MUL:
 - Độ bay hơi: $rho = 0.25$
 - Thông tin heuristic: $eta_"NNI" = 0.3, eta_"SPR" = 0.4, eta_"TBR" = 0.4$
-- Số lượng kiến ở mỗi thế hệ: $L = 15 + ceil(n/100)$ trong đó $n$ là số lượng taxa của sắp hàng gốc. Dễ thấy, số kiến được điều chỉnh động dựa trên kích thước của MSA đầu vào.
+- Số lượng kiến ở mỗi thế hệ: $L = L_0 + ceil(n/100)$ với $L_0 = 15$ trong đó $n$ là số lượng taxa của sắp hàng gốc. Dễ thấy, số kiến được điều chỉnh động dựa trên kích thước của MSA đầu vào.
 Đối với ACO-ONCE:
 - Độ bay hơi: $rho = 0.1$
 - Thông tin heuristic: $eta_"NNI" = 0.3, eta_"SPR" = 0.4, eta_"TBR" = 0.4$
-- Số lượng kiến ở mỗi thế hệ: $L = 5 + ceil(n/100)$ trong đó $n$ là số lượng taxa của sắp hàng gốc. Dễ thấy, số kiến được điều chỉnh động dựa trên kích thước của MSA đầu vào.
+- Số lượng kiến ở mỗi thế hệ: $L = L_0 + ceil(n/100)$ với $L_0 = 5$ trong đó $n$ là số lượng taxa của sắp hàng gốc. Dễ thấy, số kiến được điều chỉnh động dựa trên kích thước của MSA đầu vào.
 
 #[]
 Các thí nghiệm được tiến hành bằng dữ liệu mô phỏng và dữ liệu sinh học (70 bộ DNAs và 45 bộ protein) như đề cập ở @mpboot2-dataset trên hệ thống tính toán hiệu suất cao tại trường Đại học Công nghệ - Đại học Quốc gia Hà Nội. Các tiêu chí đánh giá cũng đã được đề cập ở @mpboot2-crit.
