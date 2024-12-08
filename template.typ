@@ -260,7 +260,6 @@
   set figure.caption(separator: [ --- ])
   set figure(gap: 3pt, numbering: heading_numbering)
 
-  show figure: set block(breakable: true)
   show figure.where(kind: image): set figure(gap: 15pt, numbering: heading_numbering)
   show figure.caption: c => [
     #context text(weight: "bold")[

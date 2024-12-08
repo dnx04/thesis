@@ -90,7 +90,7 @@ Cú pháp đầy đủ để tìm kiếm với các tham số tùy chỉnh:
 ```sh
 $ mpboot -s <alignment_file> -aco -aco_nni_prior 0.3 -aco_spr_prior 0.4 -aco_tbr_prior 0.4 -aco_evaporation_rate 0.25 -aco_update_iter 15 
 ```
-Để thực hiện MP bootstrapping với $B$ pseudo-replicates, thêm "`-bb <B>`" vào dòng lệnh.
+Để thực hiện MP bootstrapping với $B$ sắp hàng bootstrap, thêm "`-bb <B>`" vào dòng lệnh.
 == Đánh giá thực nghiệm
 === Cài đặt thực nghiệm
 
@@ -99,11 +99,11 @@ Chúng tôi so sánh hai phiên bản của MPBoot-RL (ACO-MUL (sử dụng quy 
 #[]
 Đối với ACO-MUL:
 - Độ bay hơi: $rho = 0.25$
-- Thông tin heuristic: $eta_"NNI" = 0.3, eta_"SPR" = 0.4, eta_"TBR" = 0.4$
+- Thông tin heuristic: $eta_"NNI" = 0.3, space eta_"SPR" = 0.4, space eta_"TBR" = 0.4$
 - Số lượng kiến ở mỗi thế hệ: $L = L_0 + ceil(n/100)$ với $L_0 = 15$ trong đó $n$ là số lượng taxa của sắp hàng gốc. Dễ thấy, số kiến được điều chỉnh động dựa trên kích thước của MSA đầu vào.
 Đối với ACO-ONCE:
 - Độ bay hơi: $rho = 0.1$
-- Thông tin heuristic: $eta_"NNI" = 0.3, eta_"SPR" = 0.4, eta_"TBR" = 0.4$
+- Thông tin heuristic: $eta_"NNI" = 0.3, space eta_"SPR" = 0.4, space eta_"TBR" = 0.4$
 - Số lượng kiến ở mỗi thế hệ: $L = L_0 + ceil(n/100)$ với $L_0 = 5$ trong đó $n$ là số lượng taxa của sắp hàng gốc. Dễ thấy, số kiến được điều chỉnh động dựa trên kích thước của MSA đầu vào.
 
 #[]
@@ -123,7 +123,7 @@ Kết quả về điểm MP của 2 phương pháp MPBoot-RL với các phương
 
 ==== Thời gian thực thi
 
-Trong @tab-time-aco, dễ thấy ACO-MUL và ACO-ONCE là hai trong những phiên bản có thời gian thực thi nhanh nhất (ACO-ONCE nhanh hơn ACO-MUL nhưng không nhiều). Với điều kiện chi phí đồng nhất, hai phiên bản này chỉ chậm hơn một ít so với TBR5-SC100 (31,5 giờ (ACO-MUL) và 30,6 giờ (ACO-ONCE) so với 30,2 giờ (TBR5-SC100)). Không những thế, với điều kiện chi phí không đồng nhất, ACO-MUL và ACO-ONCE là hai phiên bản có thời gian thực thi nhanh nhất. Khi tính tỷ số thời gian chạy với phiên bản SPR6, cả hai phương pháp ACO đều cho thấy tốc độ tính toán nhanh hơn ($approx 0,78$ với điều kiện chi phí đồng nhât và $approx 0,84$ với điều kiện chi phí không đồng nhất).
+Trong @tab-time-aco, dễ thấy ACO-MUL và ACO-ONCE là hai trong những phiên bản có thời gian thực thi nhanh nhất (ACO-ONCE nhanh hơn ACO-MUL nhưng không nhiều). Với điều kiện chi phí đồng nhất, hai phiên bản này chỉ chậm hơn một ít so với TBR5-SC100 (31,5 giờ (ACO-MUL) và 30,6 giờ (ACO-ONCE) so với 30,2 giờ (TBR5-SC100)). Không những thế, với điều kiện chi phí không đồng nhất, ACO-MUL và ACO-ONCE là hai phiên bản có thời gian thực thi nhanh nhất. Khi tính tỷ số thời gian chạy với phiên bản SPR6, cả hai phương pháp ACO đều cho thấy tốc độ tính toán nhanh hơn ($approx 0,78$ với điều kiện chi phí đồng nhất và $approx 0,84$ với điều kiện chi phí không đồng nhất).
 
 #figure(
   table(

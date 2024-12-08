@@ -178,7 +178,7 @@ gồm ba bước chính:
 
 - Cắt bỏ một nhánh con (prune) khỏi cây (loại bỏ một nhóm các nút và các cạnh nối với
   chúng).
-- Cắm lại nhánh con đã cắt vào một nhánh khác trong cây gốc.
+- Nối lại nhánh con đã cắt vào một nhánh khác trong cây gốc.
 
 SPR cho phép thực hiện các thay đổi lớn hơn trong cấu trúc cây so với NNI vì nó có thể di
 chuyển nhánh con qua các phần lớn hơn của cây. Phép toán này mở ra một phạm vi rộng hơn
@@ -218,7 +218,9 @@ tìm kiếm cây độc lập với mỗi $A_b$. Các công trình sử dụng p
 @goloboff2023tnt, PAUP\* @swofford2003phylogeny, MEGA @tamura2007mega4. Vì phương pháp
 bootstrap chuẩn có xu hướng đánh giá thấp khả năng đúng của một phân hoạch nhị phân
 @hillis1993empirical@minh2013ultrafast, nên quy tắc thực hành phổ biến là coi các cạnh có
-giá trị hỗ trợ bootstrap hơn 70% là đáng tin cậy.==== Phương pháp MPBoot
+giá trị hỗ trợ bootstrap hơn 70% là đáng tin cậy.
+
+==== Phương pháp MPBoot
 
 Phương pháp MPBoot sử dụng tiêu chuẩn maximum parsimony (với ưu điểm là tính đơn giản, dễ
 cài đặt và hiệu quả trong thiết kế cấu trúc dữ liệu) cùng với phương pháp xấp xỉ bootstrap
@@ -261,7 +263,9 @@ suốt quá trình tìm kiếm của MPBoot.
 Giải thuật tối ưu đàn kiến (Ant Colony Optimization - ACO) là một kỹ thuật tối ưu hóa dựa
 trên hành vi tìm đường của đàn kiến trong tự nhiên. Đây là một trong những giải thuật
 thuộc nhóm trí tuệ bầy đàn (Swarm Intelligence), được đề xuất bởi Marco Dorigo vào năm
-1992 @colorni1991distributed.=== Tổng quan
+1992 @colorni1991distributed.
+
+=== Tổng quan
 
 Trong tự nhiên, các cá thể kiến di chuyển ngẫu nhiên và khi tìm thấy thức ăn, chúng quay
 trở về tổ, đồng thời để lại dấu vết pheromone. Nếu các con kiến khác tìm thấy con đường
@@ -339,7 +343,9 @@ pheromone được thả ra bởi con kiến $k$, thường được cho theo c�
 
 $ Delta tau_(x y)^k := cases(Q \/ L_k &" nếu kiến" k "sử dụng cạnh" x y "trong lời giải", 0 &" nếu không") $
 trong đó $L_k$ là chi phí của hành trình của con kiến $k$ (thường là chiều dài) và $Q$ là
-một hằng số.=== Các biến thể của giải thuật tối ưu đàn kiến
+một hằng số.
+
+=== Các biến thể của giải thuật tối ưu đàn kiến
 
 Thuật toán được đề cập ở trên là thuật toán ACO đầu tiên, có tên gọi là thuật toán Ant
 System (AS) @colorni1991distributed.

@@ -22,7 +22,7 @@ Qua quá trình nghiên cứu, cài đặt, thực nghiệm và hiệu chỉnh t
 
 - Trình bày đề xuất MPBoot-RL -- kết hợp các phép biến đổi cây NNI, SPR và TBR vào pha khám phá leo đồi của MPBoot sử dụng giải thuật tối ưu đàn kiến. Hai phiên bản được đề xuất bao gồm ACO-MUL (sử dụng quy tắc cập nhật mùi SMMAS-multiple) và ACO-ONCE (sử dụng quy tắc cập nhật mùi SMMAS gốc).
 
-- Kết quả thực nghiệm cho thấy các phiên bản TBR cho điểm MP tốt hơn so với phiên bản MPBoot cũ (SPR6) nhưng hầu hết có thời gian thực thi lâu hơn, trừ phiên bản TBR5-SC100 có thời gian tương đương với SPR6. So với TNT, các phiên bản của MPBoot2, tuy không bằng TNT với điều kiện chi phí đồng nhất, áp đảo TNT với điều kiện chị phí không đồng nhất. Với các phiên bản MPBoot-RL, ACO-MUL và ACO-ONCE cho thấy kết quả điểm số tốt hơn hầu hết các phiên bản MPBoot khác và thời gian thực thi áp đảo.
+- Kết quả thực nghiệm cho thấy các phiên bản TBR cho điểm MP tốt hơn so với phiên bản MPBoot cũ (SPR6) nhưng hầu hết có thời gian thực thi lâu hơn, trừ phiên bản TBR5-SC100 có thời gian tương đương với SPR6. So với TNT, các phiên bản của MPBoot2, tuy không bằng TNT với điều kiện chi phí đồng nhất, áp đảo TNT với điều kiện chi phí không đồng nhất. Với các phiên bản MPBoot-RL, ACO-MUL và ACO-ONCE cho thấy kết quả điểm số tốt hơn hầu hết các phiên bản MPBoot khác và thời gian thực thi áp đảo.
 
 - Thông qua thực nghiệm trên dữ liệu sinh theo mô hình Yule-Harding cho thấy độ chính xác bootstrap được đảm bảo tương đương với thuật toán gốc.
 

@@ -14,7 +14,7 @@
 tốt nhất tìm được cho tập sắp hàng (MSAs) ban đầu. Tập hợp này được sinh ở pha khởi tạo
 (pha 1) nhờ chạy 100 lần thủ tục thêm từng bước ngẫu nhiên rồi tối ưu bằng leo đồi SPR và
 chọn ra $C$ cây tốt nhất. Tập hợp $cal(C)$ tiếp tục được cải thiện qua pha khám phá (pha
-2) (xem @mpboot-iter) nhờ chiến lược lặp phá cây chọn ngẫu nhiên trong 𝐶 rồi leo đồi SPR
+2) (xem @mpboot-iter) nhờ chiến lược lặp phá cây chọn ngẫu nhiên trong $cal(C)$ rồi leo đồi SPR
 trên kết quả. Việc phá cây ở pha khám phá được thực hiện nhờ luân phiên (i) random NNI và
 (ii) ratchet dùng leo đồi SPR. Ngoài ra, tập cây bootstrap $cal(B)$ được cập nhật cùng với
 việc tìm kiếm cây. Ở pha tinh chỉnh bootstrap (pha 3), mỗi cây bootstrap sẽ được tối ưu
@@ -246,7 +246,7 @@ leo đồi "tốt nhất" và "tốt hơn") thì mẫu không gian cây khảo s
 
 Chúng tôi đề xuất MPBoot-TBR (xem @algo4) bằng cách thay thế toàn bộ leo đồi SPR bằng leo
 đồi TBR. Nếu một lượt lặp tìm kiếm ở pha 2 không tìm được một cây có điểm số MP thấp hơn
-so với điểm số của $T^"best"$ , thì lượt lặp sẽ được coi là unsuccessful (thất bại). Thuật
+so với điểm số của $T^"best"$, thì lượt lặp sẽ được coi là unsuccessful (thất bại). Thuật
 toán duy trì biến $n_"unsuccess"$ lưu số lượt lặp tìm kiếm liên tiếp unsuccessful (thất
 bại). MPBoot gốc dừng nếu $n_"unsuccess"$ đạt $n^'$ (giá trị làm tròn lên tới số hàng trăm
 gần nhất của $n$). Do tập lân cận của TBR lớn hơn, chúng tôi hiệu chỉnh giới hạn của $n_"unsuccess"$ thành $n^'=100$ giống
