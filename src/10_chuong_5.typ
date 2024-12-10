@@ -11,7 +11,7 @@
 
 Như đã phân tích ở @spr-vs-tbr, dù leo đồi sử dụng TBR5 nhìn chung có cải thiện hơn so với sử dụng SPR6, nhưng vẫn có nhiều bộ dữ liệu mà SPR6 tỏ ra hiệu quả hơn so với TBR5. Không những thế, với những bộ dữ liệu dễ, sử dụng thuật toán NNI khi đó sẽ tăng tốc độ tìm kiếm đáng kể. Vì những lí do trên, việc kết hợp NNI, SPR và TBR có tiềm năng cải thiện hiệu suất thuật toán, cải thiện điểm số, và từ đó tăng cường độ chính xác của bootstrap. Kết hợp các phép biến đổi cây có thể được thực hiện ở bước leo đồi ở pha khám phá của MPBoot (xem @mpboot-iter).
 
-Chúng tôi đề xuất thuật toán MPBoot-RL để tăng cường pha khám phá (pha 2) của thuật toán MPBoot2 bằng cách sử dụng một phương pháp học tăng cường, cụ thể là giải thuật tối ưu đàn kiến (ACO). Thuật toán MPBoot-RL thay thế quá trình tối ưu hóa cây, trước đây chỉ sử dụng leo đồi SPR, bằng việc chọn một trong ba phép toán biến đổi cây: NNI, SPR và TBR (xem @mpboot-rl).
+Chúng tôi đề xuất thuật toán MPBoot-RL để tăng cường pha khám phá (pha 2) của thuật toán MPBoot2 bằng cách sử dụng một phương pháp học tăng cường, cụ thể là giải thuật tối ưu đàn kiến (ACO). Thuật toán MPBoot-RL thay thế quá trình tối ưu hóa cây, trước đây chỉ sử dụng leo đồi SPR, bằng việc chọn một trong ba phép toán biến đổi cây: NNI, SPR và TBR (xem @mpboot-rl). Ngoài ra, chúng tôi thực hiện khảo sát liên quan giữa các thông số sử dụng các phép biến đổi cây với "độ khó" của tập dữ liệu (sử dụng Pythia @haag2022easy), gợi mở về cách dự đoán độ khó dữ liệu theo MPBoot2.
 
 #figure(
   image("/images/mpboot-rl.png"),
@@ -154,5 +154,28 @@ Hàm $f_("SPR6")(v)$ (đường màu đen), hàm $f_("ACO-MUL")(v)$ (đường m
   image("/images/bootstrap-aco.png"),
   caption: [Độ chính xác bootstrap của các phương pháp ACO-MUL (đường màu cam), ACO-ONCE (đường màu xanh) và SPR6 (đường màu đen - của phiên bản MPBoot)],
 ) <bootstrap-acc-aco>
+
+=== Khảo sát giữa các phép biến đổi cây với độ khó của dữ liệu
+
+Liên quan đến độ khó của bộ dữ liệu, các nghiên cứu gần đây của @togkousidis2023adaptive và @haag2022easy đã giới thiệu Pythia, một mô hình hồi quy Random Forest nhằm giải quyết vấn đề độ khó của bộ dữ liệu trong suy luận tiến hóa, và Adaptive RAxML-NG, một chiến lược thích ứng dựa trên mô hình Maximum Likelihood. Chiến lược thích ứng của họ điều chỉnh mức độ kỹ lưỡng trong việc tìm kiếm cây dựa trên độ khó được dự đoán. Pythia cho chỉ số độ khó trong khoảng từ 0.0 (dễ nhất) đến 1.0 (khó nhất).
+
+Chúng tôi khảo sát tỉ lệ sử dụng 3 phép biến đổi cây NNI, SPR và TBR trên 115 bộ dữ liệu TreeBASE với độ khó tương ứng của từng bộ được Pythia dự đoán ở @aco-diff. Dễ thấy rằng bộ dữ liệu mà Pythia đánh giá càng "khó" (chỉ số càng lớn), thì phép biến đổi SPR và TBR sẽ được sử dụng càng nhiều. Không những thế, trong những bộ dữ liệu khó đó, tỷ lệ tìm kiếm sử dụng phép TBR thường sẽ lớn hơn so với SPR.
+
+#figure(
+  grid(
+    columns: 1,
+    align: horizon,
+    gutter: 10pt,
+    [*(a) ACO-MUL*],     
+    image("/images/acomul_diff.png"), 
+    [$space$*(b) ACO-ONCE*],
+    image("/images/acoonce_diff.png"),
+  ),
+  caption: [Khảo sát liên quan giữa ba phép biến đổi cây với độ khó Pythia của ACO-MUL và ACO-ONCE (đã làm mượt với window size = 30)],
+) <aco-diff>
+
+Khảo sát trên gợi ý cho việc đánh giá độ khó bộ dữ liệu sử dụng thông số sử dụng các phép biến đổi cây là khả thi. Tuy nhiên, cần nghiên cứu thêm kết hợp một số đặc tính khác của bộ dữ liệu nữa. Phương pháp Pythia này khác biệt so với phương pháp của chúng tôi, vì Adaptive RAxML-NG yêu cầu huấn luyện mô hình trên một bộ dữ liệu tự gán nhãn. Sau khi huấn luyện, mô hình được sử dụng để dự đoán độ khó và triển khai một thuật toán chiến lược dựa trên độ khó đã dự đoán.
+
+Ngược lại, nghiên cứu của chúng tôi tập trung vào khả năng tự điều chỉnh và lựa chọn các phép biến đổi cây một cách tự nhiên bằng cách sử dụng thuật toán tối ưu hóa bầy kiến (Ant Colony Optimization). Sau đó, chúng tôi có thể phân tích sâu vào quy trình tự điều chỉnh này để ước lượng độ khó của bộ dữ liệu.
 
 #pagebreak()

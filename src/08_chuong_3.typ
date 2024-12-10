@@ -12,10 +12,10 @@
 
 Để giải bài xây dựng cây tiến hóa bootstrap, thuật toán MPBoot duy trì một tập cây $cal(C)$ gồm $C$ cây
 tốt nhất tìm được cho tập sắp hàng (MSAs) ban đầu. Tập hợp này được sinh ở pha khởi tạo
-(pha 1) nhờ chạy 100 lần thủ tục thêm từng bước ngẫu nhiên rồi tối ưu bằng leo đồi SPR và
+(pha 1) nhờ chạy 100 lần thủ tục randomized stepwise addition rồi tối ưu bằng leo đồi SPR và
 chọn ra $C$ cây tốt nhất. Tập hợp $cal(C)$ tiếp tục được cải thiện qua pha khám phá (pha
 2) (xem @mpboot-iter) nhờ chiến lược lặp phá cây chọn ngẫu nhiên trong $cal(C)$ rồi leo đồi SPR
-trên kết quả. Việc phá cây ở pha khám phá được thực hiện nhờ luân phiên (i) random NNI và
+trên kết quả. Việc phá cây ở pha khám phá được thực hiện nhờ luân phiên (i) random NNIs và
 (ii) ratchet dùng leo đồi SPR. Ngoài ra, tập cây bootstrap $cal(B)$ được cập nhật cùng với
 việc tìm kiếm cây. Ở pha tinh chỉnh bootstrap (pha 3), mỗi cây bootstrap sẽ được tối ưu
 nhờ leo đồi SPR trên từng MSA bootstrap.
@@ -35,8 +35,7 @@ bootstrap tốt hơn.
 == Đề xuất tính toán nhanh một phép biến đổi TBR
 
 Xét một phép biến đổi TBR trên cây $T^"lst"$ (xem #ref(label("tbr-example"))A). Gọi cạnh $R$ là
-cạnh cắt của phép TBR. Trong trường hợp tổng quát, cắt cây $T^"lst"$ tại $R$ tạo ra hai
-cây con $T_1$, $T_2$ và cạnh $R$ tạm thời tách biệt với nhau (xem #ref(label("tbr-example"))B).
+cạnh cắt của phép TBR. Trong trường hợp tổng quát, cắt cây $T^"lst"$ tại $R$ tạo ra ba phần tạm thời tách biệt nhau gồm hai cây con $T_1$, $T_2$ và cạnh $R$ (xem #ref(label("tbr-example"))B).
 Cạnh $R$ sau đó sẽ được dùng làm cạnh trung gian để nối $T_1$ và $T_2$ (xem #ref(label("tbr-example"))C).
 Giả sử cặp cạnh nối là ($I_1$, $I_2$) với $I_1$ thuộc cây con $T_1$, $I_2$ thuộc cây con $T_2$.
 Gọi $T^*$ là cây kết quả nối $I_1$ và $I_2$.

@@ -49,9 +49,7 @@ cây tiến hóa dựa trên dữ liệu bộ gen của hàng triệu mẫu viru
 nhân, các nhà nghiên cứu có thể xác định được mối quan hệ giữa các biến thể của
 SARS-CoV-2, từ đó theo dõi nguồn gốc và sự xuất hiện của các biến thể mới như Alpha,
 Delta, và Omicron. Cây tiến hóa cung cấp thông tin quan trọng để hiểu cách các đột biến di
-truyền ảnh hưởng đến khả năng lây truyền, độc lực, và hiệu quả của vaccine. Ngoài ra, nó
-hỗ trợ việc phát triển các chiến lược y tế công cộng, như giám sát dịch tễ học và dự báo
-sự bùng phát dịch bệnh, nhằm ứng phó kịp thời và hiệu quả với các biến thể nguy hiểm. Phân
+truyền ảnh hưởng đến khả năng lây nhiễm, đặc tính của virus, và từ đó tối ưu hiệu quả của vaccine. Ngoài ra, cây tiến hóa cũng hỗ trợ việc phát triển các chiến lược y tế công cộng, như giám sát dịch tễ học và dự báo sự bùng phát dịch bệnh, nhằm ứng phó kịp thời và hiệu quả với các biến thể nguy hiểm. Phân
 tích này không chỉ minh chứng cho sức mạnh của khoa học dữ liệu trong y học hiện đại mà
 còn mở ra hướng đi mới trong việc kiểm soát các dịch bệnh tương lai.
 
@@ -66,17 +64,16 @@ hóa chi phí thay thế cần thiết để giải thích các chuỗi trong m�
 
 Bài toán xây dựng cây bootstrap tiến hóa (Phylogenetic Bootstrapping) (nguồn gốc từ phương
 pháp bootstrap trong thống kê @efron1992bootstrap) liên quan đến việc tạo ra nhiều bản sao
-bootstrap của MSA gốc bằng cách lấy mẫu các vị trí với sự thay thế. Mục tiêu là xác định
+bootstrap bằng cách lấy mẫu một số cột (có thể trùng nhau) của MSA gốc. Mục tiêu là xác định
 cây tốt nhất cho cả MSA gốc và mỗi bản sao bootstrap, theo tiêu chí MP. Kết quả được tóm
-tắt dưới dạng tần suất phân chia nhánh, được sử dụng để đánh giá sự hỗ trợ cho mỗi phần
-của cây, thể hiện qua giá trị hỗ trợ bootstrap. Xây dựng cây bootstrap tiến hóa theo tiêu
+tắt dưới dạng tần suất phân chia nhánh, được sử dụng để đánh giá giá trị hỗ trợ cho mỗi phân nhánh của cây. Xây dựng cây bootstrap tiến hóa theo tiêu
 chuẩn Maximum Parsimony là bài toán tối ưu tổ hợp thuộc lớp NP-complete
 @graham1982unlikelihood.
 
 MPBoot @hoang2018mpboot là một công cụ phần mềm được thiết kế để thực hiện phân tích
-bootstrap MP một cách hiệu quả. MPBoot sử dụng các phép thao tác sắp xếp lại cây như
+bootstrap MP một cách hiệu quả. MPBoot sử dụng các phép thao tác biến đổi cây như
 Nearest Neighbor Interchange (NNI) và Subtree Pruning and Regrafting (SPR) để tìm kiếm cây
-tốt nhất. Tuy nhiên, MPBoot chủ yếu dựa vào SPR, điều này có thể hạn chế hiệu suất trong
+tốt nhất. Tuy nhiên, MPBoot hiện tại chủ yếu dựa vào SPR. Điều này có thể hạn chế hiệu suất trong
 việc khám phá không gian cây.
 
 == Mục tiêu của đề tài
@@ -91,15 +88,15 @@ triển nhiều tính năng mới như checkpoint, hỗ trợ dữ liệu khác 
 liệu lớn, và cải tiến các tính năng hiện có để phát triển phiên bản MPBoot2. Để khai thác
 tối đa sức mạnh của các phép biến đổi, khóa luận còn phát triển MPBoot-RL, sử dụng giải
 thuật đàn kiến (Ant Colony Optimization) để kết hợp linh hoạt các phép biến đổi, nhằm tối
-ưu hóa cả điểm số và thời gian tính toán. 
+ưu hóa cả điểm số và thời gian tính toán. Ngoài ra, khóa luận cũng thực hiện khảo sát liên quan giữa các thông số sử dụng các phép biến đổi cây với "độ khó" của tập dữ liệu.
 
 // Đồng thời, khóa luận đề xuất một ánh xạ độ khó của dữ liệu dựa trên quá trình tối ưu của thuật toán.
 
 == Cấu trúc của khóa luận
-
 Phần còn lại của khóa luận này được trình bày như sau:
 - @chuong2: Giới thiệu các khái niệm cơ sở về bài toán xây dựng cây bootstrap tiến hóa và
   giải thuật đàn kiến.
+
 - @chuong3: Trình bày phương pháp tích hợp kĩ thuật biến đổi cây TBR vào MPBoot.
 - @chuong4: Trình bày phiên bản MPBoot2.
 - @chuong5: Trình bày phiên bản MPBoot-RL.

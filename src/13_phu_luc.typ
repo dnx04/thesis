@@ -12,6 +12,50 @@
 
 #counter(heading).update(1)
 
+== Kết quả phân tích bổ sung của các phiên bản MPBoot2 <pl-2>
+
+#figure(
+  image("/images/tbr5_sc100_spr6.png"),
+  caption: [So sánh kết quả của TBR5-SC100 với SPR6 trên 115 bộ dữ liệu TreeBASE],
+  numbering: phuluc_numbering
+) <tbr5_sc100_spr6>
+
+#figure(
+  image("/images/tbr5_better_spr6.png"),
+  caption: [So sánh kết quả của TBR5-BETTER với SPR6 trên 115 bộ dữ liệu TreeBASE],
+  numbering: phuluc_numbering
+) <tbr5_better_spr6>
+
+#figure(
+  image("/images/tbr6_spr6.png"),
+  caption: [So sánh kết quả của TBR6 với SPR6 trên 115 bộ dữ liệu TreeBASE],
+  numbering: phuluc_numbering
+) <tbr6_spr6>
+
+#figure(
+  image("/images/spr6_tnt.png"),
+  caption: [So sánh kết quả của SPR6 với TNT trên 115 bộ dữ liệu TreeBASE],
+  numbering: phuluc_numbering
+) <spr6_tnt>
+
+#figure(
+  image("/images/tbr5_tnt.png"),
+  caption: [So sánh kết quả của TBR5 với TNT trên 115 bộ dữ liệu TreeBASE],
+  numbering: phuluc_numbering
+) <tbr5_tnt>
+
+#figure(
+  image("/images/tbr5_better_tnt.png"),
+  caption: [So sánh kết quả của TBR5-BETTER với TNT trên 115 bộ dữ liệu TreeBASE],
+  numbering: phuluc_numbering
+) <tbr5_better_tnt>
+
+#figure(
+  image("/images/tbr6_tnt.png"),
+  caption: [So sánh kết quả của TBR6 với TNT trên 115 bộ dữ liệu TreeBASE],
+  numbering: phuluc_numbering
+) <tbr6_tnt>
+
 == Kết quả phân tích bổ sung của các phiên bản MPBoot-RL <pl-aco-1>
 
 #figure(

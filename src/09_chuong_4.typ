@@ -63,7 +63,7 @@ Với thước đo thứ 3 là thời gian thực thi, chúng tôi quan sát t�
 
 Như mô tả trong @fig-treebase-score, hiệu suất của các phương pháp khác nhau thay đổi đáng kể giữa dữ liệu DNA và protein dưới các điều kiện chi phí đồng nhất và không đồng nhất. Đối với dữ liệu DNA, dưới điều kiện chi phí đồng nhất, phương pháp TNT đạt kết quả tốt nhất, với 60 bộ dữ liệu đạt được điểm tối đa theo phương pháp đơn giản hóa tối ưu. Hiệu suất này được theo sau bởi TBR6 (50), TBR5-BETTER (47), và cả TBR5 và TBR5-SC100 (47), thể hiện hiệu quả tương tự như SPR6 (47). Dưới điều kiện chi phí không đồng nhất, TBR6 (53) và TBR5-BETTER (51) là các phương pháp có hiệu suất cao nhất, trong khi TNT có phần thấp hơn với 58 bộ dữ liệu. Các phương pháp khác như TBR5 (49) và TBR5-SC100 (48) cũng thể hiện hiệu suất mạnh mẽ, trong khi SPR6 đạt được điểm tốt nhất ở 45 bộ dữ liệu.
 
-Đối với dữ liệu protein, điều kiện chi phí đồng nhất cho thấy sự kết quả đồng đều hơn giữa các phương pháp. TNT, TBR5-SC100, TBR5, và TBR5-BETTER đều cho thấy kết quả tương tự, dao động từ 40 đến 41 bộ dữ liệu. Cả TBR6 và SPR6 cũng đạt hiệu suất tương tự trong phạm vi này, cho thấy sự khác biệt tối thiểu giữa các phương pháp đối với dữ liệu protein dưới chi phí đồng nhất. Tuy nhiên, dưới điều kiện chi phí không đồng nhất, TBR6 (42) và TBR5-SC100 (42) là các phương pháp dẫn đầu. Ngược lại, TNT cho thấy sự suy giảm đáng kể về hiệu suất, chỉ đạt được 14 bộ dữ liệu, thấp nhất trong tất cả các phương pháp. Các phương pháp khác, bao gồm TBR5 (42), SPR6 (42), và TBR5-BETTER (42), duy trì hiệu suất ổn định.
+Đối với dữ liệu protein, điều kiện chi phí đồng nhất cho thấy kết quả đồng đều hơn giữa các phương pháp. TBR5, TBR5-BETTER, TBR6 đạt được 41 bộ dữ liệu và SPR6, TBR5-SC100, TNT đạt được 40 bộ dữ liệu được điểm tốt nhất. Tuy nhiên, dưới điều kiện chi phí không đồng nhất, TBR6 (42) và TBR5-SC100 (42) là các phương pháp tốt hơn. Ngược lại, TNT cho thấy sự suy giảm đáng kể về hiệu suất, chỉ đạt được 14 bộ dữ liệu, thấp nhất trong tất cả các phương pháp. Các phương pháp khác, bao gồm TBR5 (42), SPR6 (42), và TBR5-BETTER (42), duy trì hiệu suất ổn định.
 
 Những kết quả này cho thấy rõ sự thay đổi trong hiệu suất của các phương pháp phụ thuộc vào kiểu dữ liệu và điều kiện chi phí. Phương pháp TNT cho thấy hiệu suất vượt trội với dữ liệu DNA dưới điều kiện chi phí đồng nhất, nhưng hiệu suất giảm mạnh đối với dữ liệu protein dưới điều kiện chi phí không đồng nhất. Mặt khác, các phương pháp TBR\* mang lại độ chính xác cao ổn định trên cả hai loại dữ liệu và điều kiện chi phí, làm nổi bật tính tin cậy và mạnh mẽ của chúng, đặc biệt trong các tình huống yêu cầu hiệu suất ổn định trên các điều kiện khác nhau.
 
@@ -76,13 +76,13 @@ Những kết quả này cho thấy rõ sự thay đổi trong hiệu suất c�
 
 Tổng thời gian chạy (tính bằng giờ) của mỗi phương pháp trên 115 bộ dữ liệu từ TreeBASE được trình bày trong  @tab-time-treebase, so sánh hiệu suất trong các điều kiện chi phí đồng nhất và không đồng nhất. Ngoài ra, bảng còn cung cấp tỷ lệ thời gian trung bình và trung vị so với SPR6 cho cả hai điều kiện chi phí.
 
-Trong điều kiện chi phí đồng nhất, phương pháp nhanh nhất là TBR5-SC100 (30,2 giờ), tiếp theo là SPR6 (37,2 giờ). Các phương pháp chậm nhất là TBR6 (78,2 giờ) và TNT (75,5 giờ). Tỷ lệ thời gian trung bình của các phương pháp so với SPR6 trong điều kiện chi phí đồng nhất là 1,04 cho TBR5-SC100, 1,42 cho TBR5, 1,62 cho TBR5-BETTER, và 1,98 cho TBR6, với giá trị trung vị lần lượt là 0,96, 1,43, 1,60, và 1,96. TNT có tỷ lệ thời gian trung bình là 1,23 và trung vị là 0,47.
+Trong điều kiện chi phí đồng nhất, phương pháp nhanh nhất là TBR5-SC100 (30,2 giờ), tiếp theo là SPR6 (37,2 giờ). Các phương pháp chậm nhất là TBR6 (78,2 giờ) và TNT (75,5 giờ). Tỷ lệ thời gian trung bình của các phương pháp so với SPR6 trong điều kiện chi phí đồng nhất là 1.04 cho TBR5-SC100, 1.42 cho TBR5, 1.62 cho TBR5-BETTER, và 1.98 cho TBR6, với giá trị trung vị lần lượt là 0.96, 1.43, 1.60, và 1.96. TNT có tỷ lệ thời gian trung bình là 1.23 và trung vị là 0.47.
 
-Trong điều kiện chi phí không đồng nhất, SPR6 vẫn là phương pháp hiệu quả nhất với thời gian chạy là 146,8 giờ, vượt trội hơn TBR5-SC100 (192,8 giờ) và TBR5 (240,1 giờ). Các phương pháp chậm nhất là TBR6 (338,8 giờ) và TNT (682,3 giờ). Tỷ lệ thời gian trung bình trong điều kiện chi phí không đồng nhất là 1,26 cho TBR5-SC100, 1,52 cho TBR5, 1,72 cho TBR5-BETTER, và 2,21 cho TBR6, với giá trị trung vị lần lượt là 1,17, 1,52, 1,71, và 2,18. TNT cho thấy tỷ lệ thời gian cao đáng kể với giá trị trung bình là 6,47 và trung vị là 3,55.
+Trong điều kiện chi phí không đồng nhất, SPR6 vẫn là phương pháp hiệu quả nhất với thời gian chạy là 146.8 giờ, vượt trội hơn TBR5-SC100 (192.8 giờ) và TBR5 (240.1 giờ). Các phương pháp chậm nhất là TBR6 (338.8 giờ) và TNT (682.3 giờ). Tỷ lệ thời gian trung bình trong điều kiện chi phí không đồng nhất là 1.26 cho TBR5-SC100, 1.52 cho TBR5, 1.72 cho TBR5-BETTER, và 2.21 cho TBR6, với giá trị trung vị lần lượt là 1.17, 1.52, 1.71, và 2.18. TNT cho thấy tỷ lệ thời gian cao đáng kể với giá trị trung bình là 6.47 và trung vị là 3.55.
 
 Đáng chú ý, TBR5-SC100 rất hiệu quả trong điều kiện chi phí đồng nhất nhưng kém cạnh tranh hơn trong điều kiện không đồng nhất, như được thể hiện qua cả thời gian chạy và tỷ lệ thời gian.
 
-Tóm lại, TBR5-SC100 và SPR6 là hai phương pháp cân bằng, vừa nhanh vừa cho kết quả đủ tốt. Trong điều kiện chi phí đồng nhất, TBR5-SC100 chạy nhanh hơn SPR6, trong khi ở điều kiện chi phí không đồng nhất, TBR5-SC100 chạy chậm hơn một chút nhưng đạt được điểm MP tốt hơn so với SPR6.
+Tóm lại, TBR5-SC100 và SPR6 là hai phương pháp cân bằng, vừa nhanh vừa cho kết quả đủ tốt. Trong điều kiện chi phí đồng nhất, TBR5-SC100 chạy nhanh hơn SPR6, trong khi ở điều kiện chi phí không đồng nhất, TBR5-SC100 chạy chậm hơn một chút nhưng đạt được điểm MP tốt hơn so với SPR6. Chi tiết phân tích về điểm số và thời gian giữa các phương pháp được trình bày bổ sung ở @pl-2
 
 
 #figure(
@@ -102,9 +102,9 @@ Tóm lại, TBR5-SC100 và SPR6 là hai phương pháp cân bằng, vừa nhanh 
   caption: [Thời gian chạy tổng cộng (giờ) và tỷ lệ thời gian (so với SPR6) của các phương pháp trên 115 bộ dữ liệu từ bộ dữ liệu TreeBASE]
 ) <tab-time-treebase>
 
-Các thông tin trong @fig-treebase-score và @tab-time-treebase chỉ cung cấp thống kê tổng quan về các phương pháp, một so sánh toàn diện hơn được trình bày trong @fig-tbr5sc100-tnt. Chúng tôi đã so sánh phương pháp cân bằng nhất, TBR5-SC100 từ MPBoot2, với TNT. Mỗi điểm trong hình biểu thị một bộ dữ liệu (trong tổng số 115 bộ), với trục ngang biểu thị sự chênh lệch điểm số parsimony tối đa và trục dọc biểu thị sự chênh lệch thời gian chạy. Các biểu đồ cột được đặt ở phía trên và bên cạnh cung cấp tần suất biên. Các điểm nằm bên trái đường đứt nét dọc biểu thị các căn chỉnh mà TBR5-SC100 đạt được điểm số parsimony tốt hơn. Các điểm nằm bên dưới đường đứt nét ngang biểu thị các trường hợp mà phân tích bootstrap của TBR5-SC100 nhanh hơn. Các tỷ lệ phần trăm trong các vùng của biểu đồ cột biểu thị tỷ lệ các điểm dữ liệu trong các khu vực đó. Các tỷ lệ phần trăm dọc theo đường đứt nét biểu thị tỷ lệ các sắp hàng mà cả hai phương pháp đều đạt được cùng một điểm số MP. 
+Các thông tin trong @fig-treebase-score và @tab-time-treebase chỉ cung cấp thống kê tổng quan về các phương pháp, nên chúng tôi so sánh TBR5-SC100 (phương pháp cân bằng nhất) và  TNT toàn diện hơn trong @fig-tbr5sc100-tnt. Mỗi điểm trong hình biểu thị một bộ dữ liệu (trong tổng số 115 bộ), với trục ngang biểu thị sự chênh lệch điểm số parsimony tối đa và trục dọc biểu thị sự chênh lệch thời gian chạy. Các biểu đồ cột được đặt ở phía trên và bên cạnh cung cấp tần suất biên. Các điểm nằm bên trái đường đứt nét dọc biểu thị các căn chỉnh mà TBR5-SC100 đạt được điểm số parsimony tốt hơn. Các điểm nằm bên dưới đường đứt nét ngang biểu thị các trường hợp mà phân tích bootstrap của TBR5-SC100 nhanh hơn. Các tỷ lệ phần trăm trong các vùng của biểu đồ cột biểu thị tỷ lệ các điểm dữ liệu trong các khu vực đó. Các tỷ lệ phần trăm dọc theo đường đứt nét biểu thị tỷ lệ các sắp hàng mà cả hai phương pháp đều đạt được cùng một điểm số MP. 
 
-Đối với các bộ dữ liệu DNA (xem #ref(label("fig-tbr5sc100-tnt"))a và c), TNT cho thấy điểm số MP tốt hơn (30% so với 5.7% trong điều kiện chi phí đồng nhất và 22.1% so với 5.9% trong điều kiện chi phí không đồng nhất). Tuy nhiên, đối với các bộ dữ liệu protein (Hình #ref(label("fig-tbr5sc100-tnt"))b và d), TBR5-SC100 vượt trội hơn TNT trong điều kiện chi phí không đồng nhất (63.6% so với 0%) và kém hơn một chút so với TNT trong điều kiện chi phí đồng nhất (6.7% so với 8.9%).
+Đối với các bộ dữ liệu DNA (xem #ref(label("fig-tbr5sc100-tnt"))a và c), TNT cho thấy điểm số MP tốt hơn trong điều kiện chi phí đồng nhất (30% so với 5.7%) và trong điều kiện chi phí không đồng nhất (22.1% so với 5.9%). Tuy nhiên, đối với các bộ dữ liệu protein (Hình #ref(label("fig-tbr5sc100-tnt"))b và d), TBR5-SC100 vượt trội hơn TNT trong điều kiện chi phí không đồng nhất (63.6% so với 0%) và kém hơn một chút so với TNT trong điều kiện chi phí đồng nhất (6.7% so với 8.9%).
 
 Về thời gian chạy, trong điều kiện chi phí không đồng nhất (xem #ref(label("fig-tbr5sc100-tnt"))c và d), TBR5-SC100 chạy nhanh hơn đáng kể so với TNT (77.9% so với 22.1% cho các bộ dữ liệu DNA và 100% so với 0% cho các bộ protein). Tuy nhiên, trong điều kiện chi phí đồng nhất, TNT nhanh hơn so với TBR5-SC100 (xem #ref(label("fig-tbr5sc100-tnt"))a và b).
 
@@ -145,17 +145,71 @@ Hàm $f_("SPR6")(v)$ (đường màu đen), hàm $f_("TBR5")(v)$ (đường màu
   caption: [Thời gian chạy tổng cộng (giờ) của các phương pháp trên 30 bộ dữ liệu morphology]
 ) <tab-morp>
 
-Trước đây, phiên bản MPBoot không hỗ trợ dữ liệu morphology. Trong phiên bản MPBoot2, tính năng này đã được hỗ trợ chính thức. Hiệu suất được trình bày trong @morp-score và @tab-morp. Mặc dù tất cả các phương pháp trong MPBoot2 không hiệu quả bằng TNT về điểm tối ưu tính parsimon, nhưng chúng nhanh hơn đáng kể.
+Trước đây, phiên bản MPBoot không hỗ trợ dữ liệu morphology. Trong phiên bản MPBoot2, tính năng này đã được hỗ trợ chính thức. Hiệu suất được trình bày trong @morp-score và @tab-morp. Mặc dù tất cả các phương pháp trong MPBoot2 không hiệu quả bằng TNT về điểm MP, nhưng lại nhanh hơn đáng kể.
 
 Đối với dữ liệu nhị phân, MPBoot2 hiện cũng đã hỗ trợ. Khi chạy trên một bộ dữ liệu duy nhất, tất cả các phương pháp đều đạt được điểm tốt nhất là 1,847,943. NNI mất 144 giây, SPR6 mất 2,074 giây, TBR5 mất 3,264 giây, TBR5-BETTER mất 3,159 giây, và TNT mất 1,217 giây.
 
-=== Phân tích về hiệu năng của SPR6 so với TBR5 <spr-vs-tbr>
+=== Phân tích về hiệu năng của TBR5 so với SPR6 <spr-vs-tbr>
+
+Trong @tbr5_spr6 là phần phân tích kỹ càng hơn về hai phương pháp TBR5 và SPR6. Có thể thấy rằng, nhìn chung, TBR5 cho điểm MP tốt hơn SPR6, nhưng SPR6 lại chạy nhanh hơn đáng kể. Tuy nhiên, khi phân tích chi tiết hơn (xem @tbr5_vs_spr6) trên 115 bộ dữ liệu TreeBASE, xét trong hai trường hợp:
+
+Đối với chi phí đồng nhất và chi phí không đồng nhất:
+
+  - (1) Những bộ dữ liệu mà TNT tốt hơn SPR6, nhưng TBR5 lại tốt hơn hoặc bằng TNT. Có tổng cộng 4 bộ dữ liệu như vậy.
+
+  - (2) Những bộ dữ liệu mà TNT tốt hơn TBR5, nhưng SPR6 lại tốt hơn hoặc bằng TNT.
+
+#figure(
+  table(
+    columns: 6,
+    inset: 10pt,
+    align: horizon,
+    table.cell(rowspan: 2)[], table.cell(rowspan: 2)[], table.cell(rowspan: 2)[*Testcases*], 
+    table.cell(colspan: 3)[*MP Score*], [*SPR6*], [*TBR5*], [*TNT*],
+    table.cell(rowspan: 8, rotate(-90deg, reflow: true)[
+      *Uniform Cost*
+    ]),
+    table.cell(rowspan: 4)[*(1)*],
+    [dna_M7929_428_15016], [91399], [*91395*], [91396],
+    [dna_M7964_640_25260], [256917], [*256916*], [*256916*],
+    [dna_M4794_204_12113], [34926], [*34923*], [*34923*],
+    [prot_M11344_84_691], [9230], [*9228*], [*9228*],
+    table.cell(rowspan: 4)[*(2)*],
+    [dna_M1838_228_1131], [*20531*], [20534], [20532],
+    [dna_M11745_316_1494], [*3277*], [3278], [*3277*],
+    [dna_M9143_228_1223], [*1146*], [1148], [1147],
+    [prot_M1118_137_348], [*2153*], [2154], [*2153*],
+    table.cell(rowspan: 9, rotate(-90deg, reflow: true)[
+      *Non-uniform Cost*
+    ]),
+    table.cell(rowspan: 5)[*(1)*],
+    [dna_M7929_428_15016], [120458], [*120457*], [*120457*],
+    [dna_M7024_767_5814], [122834], [*122825*], [*122825*],
+    [dna_M7292_213_7572], [61697], [*61696*], [*61696*],
+    [dna_M9033_300_1394], [5955], [*5954*], [*5954*],
+    [dna_M3031_276_1518], [4232], [*4228*], [*4228*],
+    table.cell(rowspan: 4)[*(2)*],
+    [dna_M1224_210_8235], [*80910*], [80912], [*80910*],
+    [dna_M5931_298_4948], [*16631*], [16632], [*16631*],
+    [dna_M11745_316_1494], [*4169*], [4170], [4169],
+    [prot_M11338_100_567], [*8219*], [8220], [*8219*],
+  ),
+  caption: [Phân tích các bộ dữ liệu mà SPR6 hoặc TBR5 vươn lên so với phương pháp còn lại]
+) <tbr5_vs_spr6>
+
+Nhận thấy ở cả hai trường hợp, số lượng bộ dữ liệu mà một phương pháp vượt trội so với phương pháp còn lại là tương đương nhau. Điều này gợi ý rằng SPR6 và TBR5 phù hợp tùy thuộc vào từng bộ dữ liệu cụ thể và mỗi phương pháp có điểm mạnh riêng. Nếu có một cách kết hợp cả hai phép biến đổi này, rất có thể sẽ tận dụng được các điểm mạnh của cả hai phương pháp.
+
+#figure(
+  image("/images/tbr5_spr6.png"),
+  caption: [So sánh kết quả của TBR5 với SPR6 trên 115 bộ dữ liệu TreeBASE],
+) <tbr5_spr6>
+
 
 == Đánh giá thực nghiệm trên các bộ dữ liệu lớn
 
 Chúng tôi sử dụng các bộ dữ liệu lớn, bao gồm Plant ($38 times 432014$), Bird ($52 times 4519041$), Insect ($144 times 383161$), và Mammal ($90 times 1848196$) được lấy từ @minh2021qmaker. Chúng tôi so sánh hiệu suất của một số phương pháp trên các bộ căn chỉnh chuỗi lớn (MSAs) này bằng cách sử dụng cả mô hình chi phí đồng nhất và không đồng nhất. Kết quả được tóm tắt trong @tab-fitch-big và @tab-sankoff-big, trình bày điểm MP đạt được và thời gian chạy (tính bằng giờ) của từng phương pháp.
 
-Như trình bày trong @tab-fitch-big, tất cả các phương pháp -- NNI, SPR6, TBR5, và TNT -- đều tính được các điểm MP giống hệt nhau trên bốn bộ MSA (Plant, Bird, Insect, và Mammal). Các điểm số này cho thấy các phương pháp đều chính xác ngang nhau về tối ưu maximum parsimony. Tuy nhiên, hiệu suất thời gian chạy lại khác biệt đáng kể. NNI luôn cho thấy thời gian chạy nhanh nhất trên tất cả các bộ dữ liệu, với thời gian từ 0.3 giờ đối với bộ dữ liệu Plant đến 5.7 giờ đối với bộ dữ liệu Bird. Ngược lại, TNT có thời gian lâu dài nhất, với bộ dữ liệu Bird mất 7.2 giờ, tiếp theo là Mammal, Insect, và Plant với lần lượt 6.0, 13.0, và 0.5 giờ. SPR6 và TBR5 có thời gian chạy trung bình, trong đó TBR5 thường mất nhiều thời gian hơn SPR6.
+Như trình bày trong @tab-fitch-big, tất cả các phương pháp --- NNI, SPR6, TBR5, và TNT --- đều đạt được các điểm MP giống hệt nhau trên cả bốn bộ MSA (Plant, Bird, Insect, và Mammal). Các điểm số này cho thấy các phương pháp đều chính xác ngang nhau về tối ưu maximum parsimony. Tuy nhiên, hiệu suất thời gian chạy lại khác biệt đáng kể. NNI luôn cho thấy thời gian chạy nhanh nhất trên tất cả các bộ dữ liệu, với thời gian từ 0.3 giờ đối với bộ dữ liệu Plant đến 5.7 giờ đối với bộ dữ liệu Bird. Ngược lại, TNT có thời gian thực thi lâu nhất, với bộ dữ liệu Bird mất 7.2 giờ, tiếp theo là Mammal, Insect, và Plant với lần lượt 6.0, 13.0, và 0.5 giờ. SPR6 và TBR5 có thời gian chạy trung bình, trong đó TBR5 thường mất nhiều thời gian hơn SPR6.
 
 Đối với điều kiện chi phí không đồng nhất, như trình bày trong @tab-sankoff-big, chúng tôi nhận thấy rằng các phương pháp khác mất quá nhiều thời gian để có thể so sánh, vì vậy chúng tôi chỉ trình bày kết quả cho NNI và TNT. NNI đạt được điểm MP tốt hơn TNT đối với cả hai bộ dữ liệu Plant và Insect, với điểm số lần lượt là 1,684,167 và 6,797,376, so với 1,684,262 và 6,797,627 của TNT. Mặc dù sự khác biệt về điểm số là rất nhỏ, NNI cũng vượt trội hơn TNT về thời gian chạy, hoàn thành phân tích bootstrap trong 81.2 giờ đối với Plant và 76.3 giờ đối với Insect. Trong khi đó, TNT yêu cầu 112.9 giờ đối với Plant và dài hơn nhiều là 587.0 giờ đối với Insect, cho thấy một khoảng cách lớn về hiệu năng giữa hai phương pháp trong điều kiện chi phí không đồng nhất.
 

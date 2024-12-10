@@ -31,6 +31,9 @@ Qua quá trình nghiên cứu, cài đặt, thực nghiệm và hiệu chỉnh t
 == Các định hướng phát triển
 Các định hướng phát triển thuật toán trong tương lai bao gồm:
 - Thử nghiệm MPBoot-RL với các quy tắc cập nhật mùi khác.
+
+- Phân tích độ khó bộ dữ liệu dựa trên thông số sử dụng các phép biến đổi cây kết hợp với các đặc tính khác của bộ dữ liệu.
+
 - Ý tưởng áp dụng giải thuật đàn kiến có thể áp dụng tương tự vào quá trình phá cây (các thuật toán phá cây như ratchet, random NNIs, IQP...)
 
 - Tái cấu trúc phần cài đặt nhằm tối ưu việc thêm một phép biến đổi cây khác và kết hợp chúng sử dụng ACO trong tương lai.

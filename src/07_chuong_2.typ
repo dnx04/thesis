@@ -13,7 +13,7 @@
 Bài toán xây dựng cây tiến hóa bootstrap nhận vào một ma trận $A^("data")$ kích thước $n times m$,
 đại diện cho $n$ chuỗi, mỗi chuỗi có $m$ ký tự. Mỗi chuỗi trong số $n$ chuỗi này tương ứng
 với chuỗi sinh học của một loài đang được nghiên cứu. Các đặc điểm sinh học rất đa dạng và
-có thể bao gồm DNA, protein, hình thái học hoặc dữ liệu nhị phân. Ngoài ra, một số $B$ (thông
+có thể bao gồm DNA, protein, morphology hoặc dữ liệu nhị phân. Ngoài ra, một số $B$ (thông
 thường $B=1000$) được cung cấp, đại diện cho số lượng các mẫu bootstrap. Mỗi cây tiến hóa
 ứng viên $T$ cho $A^"data"$ là một cây nhị phân có gốc với $n$ lá, trong đó mỗi lá tương
 ứng với một chuỗi.
@@ -21,8 +21,8 @@ thường $B=1000$) được cung cấp, đại diện cho số lượng các m�
 Kết quả đầu ra của bài toán là cây tốt nhất $T^"best"$, giải thích tốt nhất sắp hàng $A^"data"$,
 và một tập hợp $cal(B)$ các cây tốt nhất $T^"best"_b$ cho các mẫu bootstrap $A_b$ (với $b = 1, dots , B$).
 Mỗi sắp hàng bootstrap $A_b$ là một mẫu bootstrap của sắp hàng ban đầu $A^"data"$, được
-tạo ra với cùng kích thước như sắp hàng ban đầu bằng cách lấy mẫu cột (cho phép lặp lại)
-đúng $m$ lần từ sắp hàng ban đầu. Chất lượng của một cây được đánh giá dựa trên một tiêu
+tạo ra với cùng kích thước bằng cách lấy mẫu cột (cho phép lặp lại)
+đúng $m$ lần từ $A^"data"$. Chất lượng của một cây được đánh giá dựa trên một tiêu
 chí xác định trước.
 
 Tập hợp các cây bootstrap $cal(B)$ thường được tóm tắt dưới dạng một vectơ tần suất của
@@ -31,12 +31,12 @@ cây đồng thuận. Hai phương pháp tóm tắt phổ biến là bootstrap c
 Phương pháp bootstrap chuẩn @efron1992bootstrap@felsenstein1985confidence xây dựng các cây
 trong tập $cal(B)$ một cách độc lập bằng cách thực hiện các lần duyệt không gian tìm kiếm
 riêng biệt cho từng mẫu bootstrap. Tần suất được gán cho mỗi phân hoạch nhị phân trên $T^"best"$ được
-gọi là giá trị hỗ trợ bootstrap cho cạnh đó.
+gọi là giá trị hỗ trợ bootstrap cho nhánh đó.
 
 Do mỗi cây bootstrap được tối ưu bằng cách thực hiện một lần tìm kiếm độc lập trên mỗi sắp
 hàng bootstrap, phương pháp này tiêu tốn khá nhiều chi phí tính toán. MPBoot tối ưu bằng
 phương pháp bootstrap xấp xỉ, chỉ thực hiện một lần duyệt không gian tìm kiếm duy nhất, và
-tập hợp các cây $cal(B)$ được chọn từ các cây đã được đánh giá trong lần tìm kiếm này.
+tập hợp các cây $cal(B)$ được chọn từ các cây mà thuật toán đã đánh giá trong lần tìm kiếm này.
 
 #figure(
   image("/images/boot-example.png"),
@@ -53,7 +53,9 @@ Các nghiên cứu về việc xây dựng cây tiến hóa thường dựa vào
 
 Trong bài toán xây dựng cây tiến hóa, ba tiêu chuẩn thường được sử dụng để đánh giá một
 cây tiến hóa là:
+
 - Tiêu chuẩn Bayesian
+
 - Tiêu chuẩn Maximum Likelihood
 - Tiêu chuẩn Maximum Parsimony
 
@@ -156,25 +158,24 @@ reconnection (TBR) là những phương pháp biến đổi cây thông dụng t
 
 ==== Nearest Neighbor Interchange (NNI)
 
-Nearest Neighbor Interchange (NNI) là một trong những phép toán cây đơn giản và phổ biến
-nhất trong phân tích phát sinh loài. Nó liên quan đến việc hoán đổi vị trí của hai nhánh
-liền kề trong cây. Cụ thể, NNI thực hiện trên một cặp nhánh kề nhau, thay thế chúng bằng
+Nearest Neighbor Interchange (NNI) (xem @nni-example) là một trong những phép biến đổi cây đơn giản và phổ biến
+nhất trong phân tích phát sinh loài. Cụ thể, NNI thực hiện trên một cặp nhánh kề nhau, thay thế chúng bằng
 hai cấu trúc cây thay thế. Phép toán này có phạm vi hạn chế vì chỉ cho phép thay đổi giữa
-hai nút liền kề, có nghĩa là nó không khám phá tất cả các khả năng sắp xếp cây. Tuy nhiên,
-sự đơn giản và chi phí tính toán tương đối thấp khiến nó trở thành phương pháp phổ biến để
+hai nút liền kề, nghĩa là không khám phá tất cả các khả năng sắp xếp cây. Tuy nhiên,
+sự đơn giản và chi phí tính toán tương đối thấp khiến NNI trở thành phương pháp phổ biến để
 tối ưu hóa cây.
 
 NNI đặc biệt hữu ích trong việc khám phá nhanh chóng các thay đổi nhỏ trong một phần cây,
 làm cho nó hiệu quả trong việc cải thiện khả năng (likelihood) hoặc điểm tính toán
-parsimony của cây mà không cần thay đổi cấu trúc lớn. Phép toán này cũng dễ tính toán, vì
+parsimony của cây mà không cần thay đổi cấu trúc lớn. Phép biến đổi này cũng dễ tính toán và cài đặt, vì
 chỉ thay đổi cấu trúc của một phần nhỏ trong cây.
 
-#figure(image("/images/NNI.png"), caption: [Minh họa phép biến đổi cây NNI])
+#figure(image("/images/NNI.png"), caption: [Minh họa phép biến đổi cây NNI]) <nni-example>
 
 ==== Subtree pruning and regrafting (SPR)
 
-Subtree Pruning and Regrafting (SPR) là một phép toán cây phức tạp hơn so với NNI. Nó bao
-gồm ba bước chính:
+Subtree Pruning and Regrafting (SPR) (xem @spr-example) là một phép toán cây phức tạp hơn so với NNI. Nó bao
+gồm hai bước chính:
 
 - Cắt bỏ một nhánh con (prune) khỏi cây (loại bỏ một nhóm các nút và các cạnh nối với
   chúng).
@@ -186,15 +187,15 @@ các thay đổi cấu trúc cây, có thể dẫn đến các giải pháp tố
 hoặc điểm parsimony.
 
 Mặc dù tốn kém về mặt tính toán hơn NNI, SPR có thể cung cấp những cái nhìn sâu hơn về các
-mối quan hệ phát sinh loài giữa các taxon. Nó đặc biệt hữu ích trong các trường hợp cây có
+mối quan hệ phát sinh loài giữa các taxon. SPR đặc biệt hữu ích trong các trường hợp cây có
 thể có các mối quan hệ phát sinh loài phức tạp, yêu cầu các thay đổi sâu hơn để tối ưu
 hóa.
 
-#figure(image("/images/SPR.png"), caption: [Minh họa phép biến đổi cây SPR])
+#figure(image("/images/SPR.png", width: 90%), caption: [Minh họa phép biến đổi cây SPR]) <spr-example>
 
 ==== Tree bisection and reconnection (TBR)
 
-Tree Bisection and Reconnection (TBR) là một trong những phép toán cây mạnh mẽ nhất trong
+Tree Bisection and Reconnection (TBR) (xem @tbr-example1) là một trong những phép toán cây mạnh mẽ nhất trong
 phân tích phát sinh loài, cho phép thực hiện các thay đổi lớn nhất về cấu trúc cây. TBR
 hoạt động bằng cách chia đôi cây thành hai phần, thường là cắt một cạnh, sau đó kết nối
 lại hai phần này theo một cấu trúc mới. Phép toán này có thể được thực hiện theo nhiều
@@ -208,7 +209,7 @@ nguyên và thời gian hơn để thực hiện. Dù vậy, TBR thường đư�
 mà các phương pháp tìm kiếm cây phức tạp hơn là cần thiết để bao quát hết sự đa dạng của
 các cấu trúc cây có thể có.
 
-#figure(image("/images/TBR.png"), caption: [Minh họa phép biến đổi cây TBR])
+#figure(image("/images/TBR.png", width: 85%), caption: [Minh họa phép biến đổi cây TBR]) <tbr-example1>
 
 === Các công trình liên quan
 ==== Các công trình sử dụng phương pháp bootstrap chuẩn
@@ -296,6 +297,7 @@ một "agent" tính toán đơn giản, tìm kiếm các giải pháp tốt cho 
 nhất định. Để áp dụng thuật toán đàn kiến, bài toán tối ưu hóa cần được chuyển đổi thành
 bài toán tìm đường đi ngắn nhất trên một đồ thị có trọng số.
 
+#[]
 Giải thuật ACO hoạt động theo các bước chính sau:
 
 - Khởi tạo các tham số và lượng pheromone ban đầu.
@@ -333,9 +335,7 @@ diện cho mức độ pheromone và sự hấp dẫn đối với các cách ch
 ==== Cập nhật pheromone
 
 Các dấu vết thường được cập nhật khi tất cả các con kiến đã hoàn thành giải pháp của
-chúng, tăng hoặc giảm mức độ pheromone tương ứng với các bước di chuyển là một phần của
-các giải pháp "tốt" hoặc "xấu". Một ví dụ về quy tắc cập nhật pheromone toàn cục là
-
+chúng, tăng hoặc giảm mức độ pheromone của các giải pháp tương ứng với giải pháp đó "tốt" hay "xấu". Một ví dụ về quy tắc cập nhật pheromone toàn cục là:
 $ tau_(x y) arrow.l.long (1-rho)tau_(x y) + sum_k^m Delta tau_(x y)^k $
 trong đó $tau_(x y)$ là lượng pheromone được để lại khi chuyển trạng thái từ $x$ đến $y$, $rho$ là
 hệ số bay hơi pheromone, $m$ là số lượng con kiến và $Delta tau_(x y)^k$ là lượng
@@ -393,9 +393,9 @@ all-to-all, directed/undirected ring, hypercube, random,...
 
 ==== Thuật toán Max-Min trơn (SMMAS)
 
-Một cải tiến so với giải thuật đàn kiến gốc là giải thuật đàn kiến Max-Min (MMAS), nơi đặt
+Một cải tiến so với giải thuật đàn kiến gốc là giải thuật đàn kiến Max-Min (MMAS) (đặt thêm
 giới hạn trên và dưới cho các giá trị mùi nhằm thúc đẩy việc khám phá và tránh sự hội tụ
-sớm. Xây dựng trên MMAS, giải thuật đàn kiến Max-Min trơn (SMMA) @do2008pheromone tích hợp
+sớm). Xây dựng trên MMAS, giải thuật đàn kiến Max-Min trơn (SMMA) @do2008pheromone tích hợp
 một cơ chế làm mượt điều chỉnh vào quy tắc cập nhật mùi nhân tạo. Yếu tố làm mượt này giúp
 điều chỉnh tốc độ thay đổi của mùi nhân tạo, chuyển từ việc tập trung vào việc khám phá
 vào giai đoạn đầu của tìm kiếm đến việc khai thác mạnh mẽ hơn khi thuật toán hội tụ.
