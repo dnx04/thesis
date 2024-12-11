@@ -16,7 +16,12 @@ với chuỗi sinh học của một loài đang được nghiên cứu. Các đ
 có thể bao gồm DNA, protein, morphology hoặc dữ liệu nhị phân. Ngoài ra, một số $B$ (thông
 thường $B=1000$) được cung cấp, đại diện cho số lượng các mẫu bootstrap. Mỗi cây tiến hóa
 ứng viên $T$ cho $A^"data"$ là một cây nhị phân có gốc với $n$ lá, trong đó mỗi lá tương
-ứng với một chuỗi.
+ứng với một chuỗi (xem @msa).
+
+#figure(
+  image("/images/msa.png", width: 90%),
+  caption: [Ví dụ sắp hàng đa chuỗi (MSA) và cây tiến hóa đơn giản],
+) <msa>
 
 Kết quả đầu ra của bài toán là cây tốt nhất $T^"best"$, giải thích tốt nhất sắp hàng $A^"data"$,
 và một tập hợp $cal(B)$ các cây tốt nhất $T^"best"_b$ cho các mẫu bootstrap $A_b$ (với $b = 1, dots , B$).
@@ -109,7 +114,7 @@ Trong đó:
 - $L_(v)(y)$ là xác suất tại nút $v$ giả định ký tự $y$ tại nút đó,
 - $p_(x y)(l_v)$ là xác suất chuyển từ ký tự $x$ sang $y$ dọc theo nhánh có độ dài $l_v$.
 
-Phương pháp này giúp tìm ra các tham số cây tiến hóa sao cho xác suất quan sát dữ liệu là
+Phương pháp này giúp tìm ra các tham số cây tiến hóa sao cho xác suất đúng với quan sát dữ liệu là
 cao nhất.
 
 ==== Tiêu chuẩn Maximum Parsimony
@@ -126,7 +131,7 @@ sắp hàng được tính theo công thức @mp:
 bằng thuật toán Fitch @fitch1971toward (cho các thay đổi có chi phí đồng nhất) hoặc thuật
 toán Sankoff @sankoff1975minimal (cho các thay đổi có chi phí không đồng nhất).
 
-Trong việc dựng cây tiến hóa, mục tiêu là tìm cây có điểm MP nhỏ nhất cho $A^"data"$, gọi
+Mục tiêu khi xây dựng cây tiến hóa là tìm cây có điểm MP nhỏ nhất mô tả $A^"data"$, gọi
 là cây MP.
 
 #figure(
@@ -188,10 +193,9 @@ hoặc điểm parsimony.
 
 Mặc dù tốn kém về mặt tính toán hơn NNI, SPR có thể cung cấp những cái nhìn sâu hơn về các
 mối quan hệ phát sinh loài giữa các taxon. SPR đặc biệt hữu ích trong các trường hợp cây có
-thể có các mối quan hệ phát sinh loài phức tạp, yêu cầu các thay đổi sâu hơn để tối ưu
-hóa.
+thể có các mối quan hệ phát sinh loài phức tạp, yêu cầu các thay đổi phức tạp hơn để tìm kiếm một cách hiệu quả.
 
-#figure(image("/images/SPR.png", width: 90%), caption: [Minh họa phép biến đổi cây SPR]) <spr-example>
+#figure(image("/images/SPR.png"), caption: [Minh họa phép biến đổi cây SPR]) <spr-example>
 
 ==== Tree bisection and reconnection (TBR)
 
@@ -209,7 +213,7 @@ nguyên và thời gian hơn để thực hiện. Dù vậy, TBR thường đư�
 mà các phương pháp tìm kiếm cây phức tạp hơn là cần thiết để bao quát hết sự đa dạng của
 các cấu trúc cây có thể có.
 
-#figure(image("/images/TBR.png", width: 85%), caption: [Minh họa phép biến đổi cây TBR]) <tbr-example1>
+#figure(image("/images/TBR.png"), caption: [Minh họa phép biến đổi cây TBR]) <tbr-example1>
 
 === Các công trình liên quan
 ==== Các công trình sử dụng phương pháp bootstrap chuẩn
@@ -372,16 +376,16 @@ kiến khác. Chiến lược ưu tú có mục tiêu chỉ đạo quá trình t
 Thuật toán này kiểm soát lượng pheromone tối đa và tối thiểu trên mỗi dấu vết. Chỉ có
 chuyến đi tốt nhất toàn cục hoặc chuyến đi tốt nhất trong vòng lặp mới được phép thêm
 pheromone vào dấu vết của nó. Để tránh sự trì trệ trong thuật toán tìm kiếm, phạm vi lượng
-pheromone có thể có trên mỗi dấu vết bị giới hạn trong một khoảng $[tau_"max",tau_"min"]$.
+pheromone có thể có trên mỗi dấu vết bị giới hạn trong một khoảng $[tau_"min",tau_"max"]$.
 Tất cả các cạnh đều được khởi tạo với $tau_"max"$ để thúc đẩy việc khám phá các giải pháp
 cao hơn. Các dấu vết sẽ được khởi tạo lại với $tau_"max"$ khi gần đến mức trì trệ.
 
 ==== Thuật toán Rank-based ant system (ASrank)
 
 Tất cả các giải pháp đều được xếp hạng theo chiều dài của chúng. Chỉ có một số lượng con
-kiến tốt nhất trong vòng lặp này mới được phép cập nhật dấu vết của chúng. Lượng feromone
+kiến tốt nhất trong vòng lặp này mới được phép cập nhật dấu vết của chúng. Lượng pheromone
 được lưu lại sẽ được cân nhắc cho từng giải pháp, sao cho các giải pháp có đường đi ngắn
-hơn sẽ lưu lại nhiều feromone hơn các giải pháp có đường đi dài hơn.
+hơn sẽ lưu lại nhiều pheromone hơn các giải pháp có đường đi dài hơn.
 
 ==== Thuật toán đàn kiến song song (PACO)
 

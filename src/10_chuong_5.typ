@@ -41,7 +41,7 @@ Quy tắc cập nhật của vết pheromone với hệ thống kiến SMMA (Smo
 
 Chúng tôi đề xuất áp dụng quy tắc SMMAS vào thuật toán MPBoot-ML như sau. Trong mỗi thế hệ kiến của thuật toán MPBoot-RL, quá trình cập nhật bao gồm một quy trình lựa chọn cẩn thận các giải pháp tốt nhất nhằm tối đa hóa điểm MP. Thuật toán xác định các con kiến có giải pháp tìm ra một cây có điểm MP tốt hơn hoặc bằng với điểm MP tốt nhất hiện tại đã tìm được của thuật toán. Những giải pháp này được coi là đáng kỳ vọng và được chọn cho quá trình cập nhật tiếp theo. Tuy nhiên, nếu không có giải pháp nào đáp ứng tiêu chí này, phép biến đổi cây nhanh nhất (phép NNI) sẽ được chọn.
 
-Sau khi thế hệ con kiến hoàn thành, thuật toán tiến hành cập nhật vết mùi pheromone trên các cạnh. Tất cả các cạnh tồn tại trong ít nhất một trong các giải pháp tốt được lựa chọn được cập nhật lên mức pheromone tối đa $tau_"max"$, phản ánh sự đóng góp của chúng vào các giải pháp có triển vọng.
+Sau khi một thế hệ kiến hoàn thành, thuật toán tiến hành cập nhật vết mùi pheromone trên các cạnh. Tất cả các cạnh tồn tại trong ít nhất một trong các giải pháp tốt được lựa chọn được cập nhật lên mức pheromone tối đa $tau_"max"$, phản ánh sự đóng góp của chúng vào các giải pháp có triển vọng.
 
 $ tau_e arrow.l.long (1- rho) dot.c tau_e + rho dot.c tau_"max" $
 
@@ -49,11 +49,11 @@ Ngược lại, các cạnh không thuộc bất kỳ giải pháp được lự
 
 $ tau_e arrow.l.long (1- rho) dot.c tau_e + rho dot.c tau_"min" $
 
-Quá trình này hiệu quả trong việc củng cố các đường đi liên quan đến các giải pháp thành công và ngăn chặn những đường đi không đóng góp đáng kể vào việc cải thiện điểm MP.
+Quá trình cập nhật này củng cố các đường đi liên quan đến các giải pháp tốt và "né tránh" những đường đi không đóng góp đáng kể vào việc cải thiện điểm MP.
 
 ==== Quy tắc thử nghiệm SMMAS-multiple
 
-Quy tắc thử nghiệm SMMAS-multiple giới thiệu một sự tinh chỉnh cho mô hình cập nhật vết mùi pheromone đã được mô tả trước đó trong thuật toán MPBoot-ACO. Khác với quy tắc SMMAS ban đầu, nơi mỗi cạnh được cập nhật một lần duy nhất trong một thế hệ kiến, quy tắc SMMAS-multiple thích nghi với sự tham gia của một cạnh trong nhiều giải pháp được chọn. 
+Quy tắc thử nghiệm SMMAS-multiple đề xuất thêm một sự thay đổi cho mô hình cập nhật vết mùi pheromone đã được mô tả trước đó trong thuật toán MPBoot-ACO. Khác với quy tắc SMMAS ban đầu, nơi mỗi cạnh được cập nhật một lần duy nhất trong một thế hệ kiến, quy tắc SMMAS-multiple được thiết kế để ưu tiên cạnh mà tham gia vào *nhiều* (thay vì chỉ một) giải pháp tốt. 
 
 Theo quy tắc SMMAS-multiple, tiêu chí lựa chọn để xác định các giải pháp triển vọng vẫn được giữ nguyên. Tuy nhiên, khác với quy tắc SMMAS gốc, cách tiếp cận này cho phép cạnh tham gia trong nhiều giải pháp được chọn được cập nhật nhiều lần lên mức pheromone tối đa. Cụ thể, nếu một cạnh đóng góp $k$ lần trong các giải pháp được chọn, nó sẽ được cập nhật $k$ lần để đạt đến mức pheromone tối đa $tau_"max"$.
 
@@ -174,8 +174,8 @@ Chúng tôi khảo sát tỉ lệ sử dụng 3 phép biến đổi cây NNI, SP
   caption: [Khảo sát liên quan giữa ba phép biến đổi cây với độ khó Pythia của ACO-MUL và ACO-ONCE (đã làm mượt với window size = 30)],
 ) <aco-diff>
 
-Khảo sát trên gợi ý cho việc đánh giá độ khó bộ dữ liệu sử dụng thông số sử dụng các phép biến đổi cây là khả thi. Tuy nhiên, cần nghiên cứu thêm kết hợp một số đặc tính khác của bộ dữ liệu nữa. Phương pháp Pythia này khác biệt so với phương pháp của chúng tôi, vì Adaptive RAxML-NG yêu cầu huấn luyện mô hình trên một bộ dữ liệu tự gán nhãn. Sau khi huấn luyện, mô hình được sử dụng để dự đoán độ khó và triển khai một thuật toán chiến lược dựa trên độ khó đã dự đoán.
+Khảo sát trên gợi ý cho việc đánh giá độ khó bộ dữ liệu sử dụng thông số sử dụng các phép biến đổi cây là khả thi. Một đề xuất đơn giản có thể là khi tỉ lệ sử dụng NNI lớn hơn so với 2 phép biến đổi còn lại thì bộ dữ liệu sẽ được đánh giá là "dễ" (tương ứng với độ khó Pythia $in (0.0;0.35)$), trong trường hợp 3 tỉ lệ ngang nhau sẽ được đánh giá là "trung bình" (tương ứng với độ khó Pythia $in (0.35;0.45)$) và các trường hợp còn lại sẽ được đánh giá lá "khó" (độ khó Pythia $in (0.45; 1.0)$. Tuy nhiên, để việc đánh giá độ khó được chính xác và khoa học hơn cần nghiên cứu thêm kết hợp một số đặc tính khác của bộ dữ liệu. 
 
-Ngược lại, nghiên cứu của chúng tôi tập trung vào khả năng tự điều chỉnh và lựa chọn các phép biến đổi cây một cách tự nhiên bằng cách sử dụng thuật toán tối ưu hóa bầy kiến (Ant Colony Optimization). Sau đó, chúng tôi có thể phân tích sâu vào quy trình tự điều chỉnh này để ước lượng độ khó của bộ dữ liệu.
+Chú ý rằng, phương pháp Pythia khác biệt so với phương pháp của chúng tôi, vì Adaptive RAxML-NG yêu cầu huấn luyện mô hình trên một bộ dữ liệu tự gán nhãn. Sau khi huấn luyện, mô hình được sử dụng để dự đoán độ khó và triển khai một thuật toán chiến lược dựa trên độ khó đã dự đoán. Ngược lại, nghiên cứu của chúng tôi tập trung vào khả năng tự điều chỉnh và lựa chọn các phép biến đổi cây một cách tự nhiên bằng cách sử dụng thuật toán tối ưu hóa đàn kiến (Ant Colony Optimization). Sau đó, chúng tôi có thể phân tích sâu vào quy trình tự điều chỉnh này để ước lượng độ khó của bộ dữ liệu.
 
 #pagebreak()

@@ -42,8 +42,7 @@ Gọi $T^*$ là cây kết quả nối $I_1$ và $I_2$.
 
 Theo tiếp cận trực tiếp thì việc đánh giá lại điểm của cây $T^*$ được thực hiện thuần bằng
 việc duyệt post-order lại toàn bộ cây và tính theo thuật toán Fitch hoặc Sankoff. Tuy
-nhiên, trước và sau khi nối tạo thành cây $T^*$ điểm parsimony của nhiều cây con không
-thay đổi.
+nhiên, điểm parsimony của nhiều cây con không thay đổi trước và sau khi nối tạo thành cây $T^*$.
 
 Sau đây, chúng tôi đề xuất phương pháp chỉ tính lại điểm của những đỉnh có thay đổi điểm
 số như sau. Giả sử cây $T^"lst"$ đã được tính toán điểm parsimony cho từng đỉnh sử dụng
@@ -194,15 +193,6 @@ cây hiện tại nếu cho kết quả tốt hơn.
 
 == Đề xuất thuật toán leo đồi TBR
 
-Thuật toán leo đồi TBR thực hiện leo đồi cập nhật cây $T$ bằng cây $T^"best"$ tìm được
-(nếu $T^"best"$ cho kết quả tốt hơn) với mỗi cạnh cắt $R$ khảo sát bằng thuật toán được mô
-tả ở @algo1 và @algo2. Vòng lặp leo đồi sẽ tiếp tục trong khi cây $T$ vẫn được cập nhật
-bởi một cây tối ưu hơn. Thuật toán leo đồi TBR được mô tả bằng mã giả trong @algo3 sau
-đây.
-
-Khi leo đồi sử dụng hai cách tìm kiếm lân cận TBR khác nhau (sau đây gọi tắt là hai cách
-leo đồi "tốt nhất" và "tốt hơn") thì mẫu không gian cây khảo sát được cũng khác nhau.
-
 #outline_algo(
   [
     #algo(
@@ -241,6 +231,15 @@ leo đồi "tốt nhất" và "tốt hơn") thì mẫu không gian cây khảo s
   [Thuật toán leo đồi sử dụng TBR trên cây $T$],
   <algo3>,
 )
+
+Thuật toán leo đồi TBR thực hiện leo đồi cập nhật cây $T$ bằng cây $T^"best"$ tìm được
+(nếu $T^"best"$ cho kết quả tốt hơn) với mỗi cạnh cắt $R$ khảo sát được mô
+tả ở @algo3. Vòng lặp leo đồi sẽ tiếp tục trong khi cây $T$ vẫn được cập nhật
+bởi một cây tối ưu hơn.
+
+Khi leo đồi sử dụng hai cách tìm kiếm lân cận TBR khác nhau (sau đây gọi tắt là hai cách
+leo đồi "tốt nhất" và "tốt hơn") thì mẫu không gian cây khảo sát được cũng khác nhau.
+
 == Đề xuất thuật toán MPBoot-TBR
 
 Chúng tôi đề xuất MPBoot-TBR (xem @algo4) bằng cách thay thế toàn bộ leo đồi SPR bằng leo
@@ -251,59 +250,62 @@ bại). MPBoot gốc dừng nếu $n_"unsuccess"$ đạt $n^'$ (giá trị làm 
 gần nhất của $n$). Do tập lân cận của TBR lớn hơn, chúng tôi hiệu chỉnh giới hạn của $n_"unsuccess"$ thành $n^'=100$ giống
 với IQ-TREE @minh2020iq.
 
-#outline_algo(
+#{
+show figure: set block(breakable: true)
+outline_algo(
   [
-    #algo(
-      header: [
-        #table(
-          columns: (auto, 1fr),
-          inset: 7pt,
-          row-gutter: (0pt, 0pt, 3pt),
-          stroke: none,
-          [*Input*],
-          [an MSA $A^"data"$ with $n$ sequences],
-          [],
-          [the number of bootstrap MSAs $B$],
-          [],
-          [an upperbound for TBR radius _maxtrav_],
-          table.hline(stroke: 0.5pt),
-          [*Output*],
-          [A tree $T^"best"$ with best found $"MP"(T^"best" | A^"data")$ and a set $cal(B)$ of
-            bootstrap trees ${T_1, T_2, dots, T_B}$],
-          table.hline(stroke: 0.5pt),
-          [],
-          [],
-        )
-      ],
-      strong-keywords: false,
-      indent-guides: 1pt + gray,
-      breakable: true,
-    )[
-      *Phase 1: Initialization*#i\
-      Generate bootstrap MSAs and initialize bootstrap tree set $cal(B)$.\
-      Initialize the threshold $"MP"_"max" := +infinity$.\
-      Initialize the candidate set $C$ for $A^"data"$ with 100 random stepwise addition
-      procedures followed by TBR hill-climbing.#d\
-      \
-      *Phase 2: Exploration*#i\
-      *do*#i\
-      Improve $C$ by performing perturbation on a randomly selected tree from the candidate set $C$ and
-      a subsequent TBR hill-climbing step.\
-      *if* a new tree $T$ with $"MP"(T | A^"data") < "MP"_"max"$ is found *then*#i\
-      Execute REPS to update the bootstrap tree set $cal(B)$.#d\
-      *end if*\
-      Update $T^"best"$, $"MP"_"max"$, $n_"unsuccess"$.#d\
-      *while* $n_"unsuccess" < n^'$#d\
-      \
-      *Phase 3: Bootstrap Refinement*#i\
-      *for* each MP-tree $T_b$ in $cal(B)$ *do*#i\
-      Perform TBR hill-climbing search and replace $T_b$ if a better parsimony score is found.#d\
-      *end for*\
-      Output $T^"best"$, the best MP tree that was found for $A^"data"$.\
-      Output set $cal(B)$ and/or map the support values onto $T^"best"$.
-    ]
+  #algo(
+    header: [
+    #table(
+      columns: (auto, 1fr),
+      inset: 7pt,
+      row-gutter: (0pt, 0pt, 3pt),
+      stroke: none,
+      [*Input*],
+      [an MSA $A^"data"$ with $n$ sequences],
+      [],
+      [the number of bootstrap MSAs $B$],
+      [],
+      [an upperbound for TBR radius _maxtrav_],
+      table.hline(stroke: 0.5pt),
+      [*Output*],
+      [A tree $T^"best"$ with best found $"MP"(T^"best" | A^"data")$ and a set $cal(B)$ of
+      bootstrap trees ${T_1, T_2, dots, T_B}$],
+      table.hline(stroke: 0.5pt),
+      [],
+      [],
+    )
   ],
-  [Thuật toán MPBoot-TBR xấp xỉ bootstrap],
+    strong-keywords: false,
+    indent-guides: 1pt + gray,
+    breakable: true,
+  )[
+    *Phase 1: Initialization*#i\
+    Generate bootstrap MSAs and initialize bootstrap tree set $cal(B)$.\
+    Initialize the threshold $"MP"_"max" := +infinity$.\
+    Initialize the candidate set $C$ for $A^"data"$ with 100 random stepwise addition
+    procedures followed by TBR hill-climbing.#d\
+    \
+    *Phase 2: Exploration*#i\
+    *do*#i\
+    Improve $C$ by performing perturbation on a randomly selected tree from the candidate set $C$ and
+    a subsequent TBR hill-climbing step.\
+    *if* a new tree $T$ with $"MP"(T | A^"data") < "MP"_"max"$ is found *then*#i\
+    Execute REPS to update the bootstrap tree set $cal(B)$.#d\
+    *end if*\
+    Update $T^"best"$, $"MP"_"max"$, $n_"unsuccess"$.#d\
+    *while* $n_"unsuccess" < n^'$#d\
+    \
+    *Phase 3: Bootstrap Refinement*#i\
+    *for* each MP-tree $T_b$ in $cal(B)$ *do*#i\
+    Perform TBR hill-climbing search and replace $T_b$ if a better parsimony score is found.#d\
+    *end for*\
+    Output $T^"best"$, the best MP tree that was found for $A^"data"$.\
+    Output set $cal(B)$ and/or map the support values onto $T^"best"$.
+  ]
+],
+  [Thuật toán MPBoot-TBR trong xấp xỉ bootstrap],
   <algo4>,
 )
+}
 #pagebreak()

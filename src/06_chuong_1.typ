@@ -30,7 +30,7 @@ hiện khái niệm về sự phân nhánh và đa dạng hóa các loài trong 
 
 #figure(
   image("/images/phylogenetic-tree.png", width: 55%),
-  caption: [Hình minh họa cây tiến hóa trong tác phẩm "The Origin of Species" của Charles Darwin],
+  caption: [Hình minh họa cây tiến hóa trong quyển "The Origin of Species" của Charles Darwin],
 ) <phytree>
 
 Cây tiến hóa thường được mô tả dưới dạng cây phả hệ - một biểu đồ phân nhánh biểu thị mối
@@ -59,7 +59,7 @@ còn mở ra hướng đi mới trong việc kiểm soát các dịch bệnh tư
 )
 
 Tiêu chí Maximum Parsimony (MP) được sử dụng để xây dựng cây tiến hóa bằng cách tối thiểu
-hóa chi phí thay thế cần thiết để giải thích các chuỗi trong một phân tích đa chuỗi (MSA).
+hóa chi phí thay thế cần thiết để giải thích các chuỗi trong một sắp hàng đa chuỗi (Multiple Sequence Alignment - MSA).
 Điểm MP của một cây được tính bằng cách cộng tổng điểm của từng vị trí (cột) trong MSA.
 
 Bài toán xây dựng cây bootstrap tiến hóa (Phylogenetic Bootstrapping) (nguồn gốc từ phương
