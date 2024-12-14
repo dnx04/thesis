@@ -59,14 +59,14 @@ Các nghiên cứu về việc xây dựng cây tiến hóa thường dựa vào
 Trong bài toán xây dựng cây tiến hóa, ba tiêu chuẩn thường được sử dụng để đánh giá một
 cây tiến hóa là:
 
-- Tiêu chuẩn Bayesian
+- Tiếp cận Bayesian
 
 - Tiêu chuẩn Maximum Likelihood
 - Tiêu chuẩn Maximum Parsimony
 
-==== Tiêu chuẩn Bayesian
+==== Tiếp cận Bayesian
 
-Tiêu chí Bayes sử dụng suy diễn Bayes để đánh giá một cấu trúc cây. Với một vectơ độ dài
+Tiếp cận Bayes sử dụng suy diễn Bayes để đánh giá một cấu trúc cây. Với một vectơ độ dài
 nhánh $"l"$ và mô hình thay thế $theta$, công thức @bayesian sau đánh giá mức độ phù hợp
 của cấu trúc cây $T$ với sắp xếp $A^"data"$:
 
@@ -80,7 +80,7 @@ Trong đó:
 - $P(D)$ là xác suất biên.
 
 Xác suất hợp lý $P(A^"data" | T, l, theta)$ được tính bằng thuật toán cắt tỉa Felsenstein.
-Do không gian tìm kiếm rất lớn, tiêu chí Bayes thường được sử dụng cùng các thuật toán
+Do không gian tìm kiếm rất lớn, tiếp cận Bayes thường được sử dụng cùng các thuật toán
 Markov Chain Monte Carlo (MCMC) để xấp xỉ.
 
 ==== Tiêu chuẩn Maximum Likelihood

@@ -163,7 +163,7 @@
         $eta_"NNI" = 0.3, space eta_"SPR" = 0.4, space eta_"TBR" = 0.4$ \
       ], f(48), g(40), f(49), g(40),
     ), 
-    caption: [Thống kê số lượng bộ dữ liệu đạt được kết quả tốt nhất (trong 155 bộ TreeBASE) của các phương pháp MPBoot-RL với các bộ siêu tham số khác nhau],
+    caption: [Thống kê số lượng bộ dữ liệu đạt được kết quả tốt nhất (trong 115 bộ TreeBASE) của các phương pháp MPBoot-RL với các bộ siêu tham số khác nhau],
     numbering: phuluc_numbering
   ) 
 }
