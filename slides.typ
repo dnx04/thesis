@@ -322,12 +322,12 @@ $arrow.r.double$ Đề xuất phiên bản MPBoot2
   #image("images/mpboot-rl.png", width: 105%)
 ])
 == Giải thuật đàn kiến <touying:hidden>
-#v(18pt)
+#v(20pt)
 #align(center, [
   #image("images/aco.png", width: 59%)
 ])
 == Cấu trúc đồ thị <touying:hidden>
-#v(18pt)
+#v(25pt)
 #align(center, [
   #image("images/network.png", width: 42%)
 ])
@@ -342,6 +342,7 @@ $arrow.r.double$ Đề xuất phiên bản MPBoot2
 
 == Quy tắc cập nhật mùi pheromone - SMMAS-once <touying:hidden>
 #[
+#v(20pt)
 #let fletcher-diagram = touying-reducer.with(reduce: fletcher.diagram, cover: fletcher.hide)
 #let (a, b, c, d, e, f) = ((0,3), (1, 0),(1,3), (4,0), (4,3), (4, 2))
 #fletcher-diagram(
@@ -389,6 +390,7 @@ trong đó:
 
 #set list(indent: 0.8em)
 - $"prob"_(A arrow.r B)$ là xác suất con kiến ở đỉnh $A$ di chuyển đến đỉnh $B$.
+
 - $tau_(A arrow.r B)$ là mức độ pheromone của cạnh từ $A$ đến $B$.
 - $eta_B$ là thông tin heuristic của đỉnh $B$.
 - $"adj"(A)$ là tập các đỉnh mà $A$ nối tới.
@@ -433,7 +435,7 @@ trong đó:
   )
 ]
 == Các bộ dữ liệu <touying:hidden>
-#v(20pt)
+#v(10pt)
 #figure(
   table(
     columns: (auto, 1fr, auto, auto, auto, auto),
