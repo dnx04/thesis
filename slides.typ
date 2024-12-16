@@ -37,7 +37,7 @@
     ])
   )
   #v(0.4cm)
-  #align(center, text(27pt, upper(strong("Tích hợp các phép biến hình\n cấu trúc cây cải tiến suy luận tiến hóa trong MPBoot"))))
+  #align(center, text(27pt, upper(strong("Tích hợp các phép biến hình cấu trúc cây cải tiến suy luận tiến hóa theo tiêu chuẩn Parsimony trong MPBoot"))))
   #v(0.5cm)
   #align(center, [
     #set text(size: 18pt)
@@ -204,8 +204,8 @@
 #v(1.2cm)
 - Cây $T^"lst"$
 - Cạnh cắt $R$
-- Cạnh nối $I_1$ và $I_1$ (thuộc 2 cây con khác nhau sau khi cắt cạnh $R$)
-- Cây kết quả $T$
+- Cạnh nối $I_1$ và $I_2$ (thuộc 2 cây con khác nhau sau khi cắt cạnh $R$)
+- Cây kết quả $T^*$
 
 #v(0.1cm)
 #align(center, [

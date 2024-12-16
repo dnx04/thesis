@@ -98,10 +98,12 @@ Chúng tôi so sánh hai phiên bản của MPBoot-RL (ACO-MUL (sử dụng quy 
 
 #[]
 Đối với ACO-MUL:
+- $tau_"max" = 1.0, space tau_"min" = 0.1$
 - Độ bay hơi: $rho = 0.25$
 - Thông tin heuristic: $eta_"NNI" = 0.3, space eta_"SPR" = 0.4, space eta_"TBR" = 0.4$
 - Số lượng kiến ở mỗi thế hệ: $L = L_0 + ceil(n/100)$ với $L_0 = 15$ trong đó $n$ là số lượng taxa của sắp hàng gốc. Dễ thấy, số kiến được điều chỉnh động dựa trên kích thước của MSA đầu vào.
 Đối với ACO-ONCE:
+- $tau_"max" = 1.0, space tau_"min" = 0.1$
 - Độ bay hơi: $rho = 0.1$
 - Thông tin heuristic: $eta_"NNI" = 0.3, space eta_"SPR" = 0.4, space eta_"TBR" = 0.4$
 - Số lượng kiến ở mỗi thế hệ: $L = L_0 + ceil(n/100)$ với $L_0 = 5$ trong đó $n$ là số lượng taxa của sắp hàng gốc. Dễ thấy, số kiến được điều chỉnh động dựa trên kích thước của MSA đầu vào.
