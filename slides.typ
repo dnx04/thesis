@@ -221,6 +221,7 @@
 )
 #pagebreak()
 
+#v(0.8cm)
 #align(center, [
   #image("images/tbr-fast1.png", width: 80%)
 ])
@@ -233,7 +234,7 @@
     [#h(60pt)*(A) Cây $T^"lst"$*], [*(B) Cây $T^*$*]
   )
   #set text(size: 19pt)
-  - Các đỉnh in xanh cần phải tính lại điểm (Các đỉnh trên đường đi từ $I_1$ đến $I_2$ của $T^"lst"$)
+  - Các đỉnh in xanh cần phải tính lại điểm (Các đỉnh trên đường đi từ $I_1$ đến gốc và trên đường đi từ $I_2$ đến gốc của $T^"lst"$)
   - Đổi gốc của cây $T^*$ thành $R$.
   - Cây $T^*$ sẽ được sử dụng làm cây $T^"lst"$ cho phép biến đổi TBR tiếp theo.
 
