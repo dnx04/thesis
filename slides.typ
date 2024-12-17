@@ -307,7 +307,7 @@ $arrow.r.double$ Với mỗi cặp cạnh $(R, I_1)$, xét mọi cạnh nối $I
 
 = Đề xuất MPBoot2
 == Đề xuất MPBoot2 <touying:hidden>
-- Thay thế toàn bộ leo đồi sử dụng SPR bằng TBR trong MPBoot. Tinh chỉnh bán kính khảo sát và điều kiện dừng.
+- Tích hợp leo đồi sử dụng TBR vào MPBoot. Tinh chỉnh bán kính khảo sát và điều kiện dừng.
 
 - Một số tính năng mới như:
   - Checkpoint
