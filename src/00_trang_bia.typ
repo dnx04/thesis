@@ -1,4 +1,4 @@
-#let trang_bia(title, authors) = {
+#let trang_bia(title, authors, subtitle, entries) = {
   rect(
     stroke: 5pt,
     inset: 7pt,
@@ -20,25 +20,26 @@
       #v(0.7cm)
       
       #align(center)[
-        #text(14pt, strong("Huỳnh Tiến Dũng"))
+        #text(14pt, strong(authors.map(a => a.name).join(", ")))
       ]
       
       #v(1.2cm)
       #align(center)[
         #text(18pt,  upper(strong(title)))
       ]
-      #v(2cm)
-      #align(center)[
-        #text(14pt, strong("KHÓA LUẬN TỐT NGHIỆP ĐẠI HỌC HỆ CHÍNH QUY"))
-      ]
-      #align(center)[
-        #text(14pt, strong("Ngành: Công nghệ thông tin"))
-      ]
 
-      #v(1fr)
-    
       #align(center)[
-        #text(12pt, strong("HÀ NỘI - 2024"))
+        #text(14pt, strong(subtitle))
+      ]
+      #v(1cm)
+      #for entry in entries {
+        align(center)[
+          #text(14pt, strong(entry.name) + ": " + entry.value)
+        ]
+      }
+      #v(1fr)
+      #align(center)[
+        #text(12pt, strong("HÀ NỘI - " + datetime.today().display("[year]")) )
       ]
     ]  
   ))

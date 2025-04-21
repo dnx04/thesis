@@ -56,7 +56,7 @@
   )
 }
 // Project part
-#let project(title: "", authors: (), body) = {
+#let project(title: "", authors: (), subtitle: "", entries: (), body) = {
   // Set the document's basic properties.
   set document(author: authors.map(a => a.name), title: title)
   set page(paper: "a4", margin: (top: 2.5cm, bottom: 3cm, left: 3cm, right: 2cm))
@@ -64,15 +64,15 @@
   set text(font: "New Computer Modern", lang: "vi", size: 13pt)
   set par(justify: true)
   // ================= Trang Bia =====================
-  trang_bia(title, authors)
-  trang_phu_bia(title, authors)
+  trang_bia(title, authors, subtitle, entries)
+  trang_phu_bia(title, authors, subtitle, entries)
   // =================================================
 
   counter(page).update(0)
   set page(numbering: "i")
-  include "src/02_loi_cam_doan.typ"
-  include "src/03_loi_cam_on.typ"
-  include "src/04_tom_tat.typ"
+  // include "src/02_loi_cam_doan.typ"
+  // include "src/03_loi_cam_on.typ"
+  // include "src/04_tom_tat.typ"
 
   show heading.where(level: 1): it => [
     #counter(figure.where(kind: image)).update(0)
@@ -105,7 +105,7 @@
           link(it.element.location())[#it.element.body ]
           box(width: 1fr, it.fill)
           h(3pt)
-          link(it.element.location())[#it.page]
+          link(it.element.location())[#it.element.location().page()]
         },
       )
     }
@@ -119,7 +119,7 @@
       link(it.element.location())[ #it.element.body ]
       box(width: 1fr, it.fill)
       h(3pt)
-      link(it.element.location())[#it.page]
+      link(it.element.location())[#it.element.location().page()]
     }
     show outline.entry.where(level: 3): it => {
       v(20pt, weak: true)
@@ -131,7 +131,7 @@
       link(it.element.location())[ #it.element.body ]
       box(width: 1fr, it.fill)
       h(3pt)
-      link(it.element.location())[#it.page]
+      link(it.element.location())[#it.element.location().page()]
     }
     // show outline.entry.where(
     //   level: 3
@@ -147,7 +147,7 @@
     //     #h(3pt)
     //     #box(width: 1fr, it.fill)
     //     #h(3pt)
-    //     #link(it.element.location())[#it.page]
+    //     #link(it.element.location())[#it.element.location().page()]
     //   ])
     // }
     {
@@ -173,7 +173,7 @@
       h(3pt)
       box(width: 1fr, it.fill)
       h(3pt)
-      link(it.element.location())[#it.page]
+      link(it.element.location())[#it.element.location().page()]
     }
     {
       show heading: none
@@ -191,14 +191,14 @@
     v(7pt)
     outline(title: none, target: figure.where(kind: table))
     pagebreak()
-    {
-      show heading: none
-      heading(numbering: none)[Danh mục giải thuật]
-    }
-    align(center, text(16pt, [*DANH MỤC GIẢI THUẬT*]))
-    v(7pt)
-    outline(title: none, target: figure.where(kind: "algo"))
-    pagebreak()
+    // {
+    //   show heading: none
+    //   heading(numbering: none)[Danh mục giải thuật]
+    // }
+    // align(center, text(16pt, [*DANH MỤC GIẢI THUẬT*]))
+    // v(7pt)
+    // outline(title: none, target: figure.where(kind: "algo"))
+    // pagebreak()
   }
 
   // ===============================================
