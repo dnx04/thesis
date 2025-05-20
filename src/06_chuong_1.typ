@@ -5,22 +5,23 @@
   = Giới thiệu
 ]
 #show: body => first_line_indent_all_body(body)
+
 == Tổng quan
 
-Kiểm thử xâm nhập (Pentesting) là hình thức mô phỏng các cuộc tấn công thực tế lên mạng, ứng dụng hoặc thiết bị để phát hiện, khai thác lỗ hổng và đưa ra khuyến nghị khắc phục trước khi bị kẻ xấu lợi dụng. Quá trình này bao gồm các bước thu thập thông tin, phân tích lỗ hổng, khai thác và báo cáo kết quả, cho phép tổ chức chủ động vá lỗi.
+Hiện nay, công cuộc chuyển đổi số đã và đang diễn ra rất mạnh mẽ trong mọi lĩnh vực của cuộc sống. Hầu hết các tổ chức, doanh nghiệp từ nhỏ đến lớn đều sở hữu các hệ thống, ứng dụng trực tuyến cho dù chỉ là một trang web tĩnh hay là một ứng dụng đa nền tảng phức tạp chạy trên hàng triệu thiết bị. Bên cạnh đó, các tổ chức tội phạm ngày càng tinh vi và nguy hiểm khi luôn tìm cách áp dụng các công nghệ cao vào các mục đích phá hoại, đánh cắp thông tin, tống tiền,... Hệ thống thông tin càng lớn thì càng dễ bị tấn công và những kẻ tấn công thì đôi khi chỉ cần lợi dụng một sai lầm nhỏ từ các nhà phát triển là đã có thể gây ra các tác hại không lồ. Vì lý do này, nhiệm vụ đánh giá an toàn thông tin luôn có ý nghĩa rất quan trọng.
 
-Red Team là nhóm chuyên gia đóng vai hacker trong môi trường mô phỏng, sử dụng kết hợp tấn công kỹ thuật và phi kỹ thuật như social engineering hay xâm nhập vật lý. Mục tiêu là đánh giá khả năng phát hiện, phản ứng và khôi phục của tổ chức dưới áp lực tấn công sát thực tế.
+Trong mọi hình thức đánh giá an toàn thông tin, việc đầu tiên bắt buộc phải thực hiện đó là Trinh sát. Công việc này bao gồm nhiều giai đoạn khác nhau, trong đó đặc trưng là: Thu thập tên miền phụ, xác định địa chỉ IP, dò quét các cổng mở, xác định và thu thập thông tin các ứng dụng web, rà quét các lỗ hổng đơn giản. Mục tiêu của nó là giúp người kiểm thử xâm nhập khám phá ra nhiều nhất có thể các tài nguyên trực tuyến mà mục tiêu sở hữu, từ đó định hình được cấu trúc và các bề mặt tấn công (attack surface) để tập trung đánh giá. Chính vì vậy mà Trinh sát thông tin đóng vai trò rất quan trọng, là tiền đề thiết yếu cho cả quá trình đánh giá an toàn thông tin. Tuy nhiên, công việc này thường cần đầu tư rất nhiều thời gian và công sức do lượng tài nguyên trực tuyến mà các tổ chức, doanh nghiệp ngày nay sở hữu có thể rất lớn, lên tới hàng trăm, hàng nghìn tên miền, ứng dụng web. 
 
-Trong bối cảnh an ninh mạng đầy biến động, Red Team truyền thống có nhiều sự hạn chế, nhất là trong bối cảnh tài nguyên công khai của tổ chức luôn thay đổi và phát triển theo thời gian, dẫn đến việc các lỗ hổng mới trong tài nguyên của tổ chức xuất hiện liên tục và khó kiểm soát. Các phương pháp kiểm thử xâm nhập truyền thống thường chỉ tập trung vào các lỗ hổng đã biết và không thể theo kịp tốc độ phát triển của công nghệ và các mối đe dọa mới, cũng như chỉ xem xét được một thời điểm trong suốt quá trình hoạt động của tổ chức. Điều này dẫn đến việc tổ chức có thể bỏ sót những lỗ hổng nghiêm trọng, và để lộ các tài nguyên điểm mù mà kẻ tấn công có thể khai thác.
+== Mục tiêu của dự án
 
-Trước tình hình đó, có xuất hiện một xu hướng mới trong cách hoạt động của các tổ chức Red Team là Red Team chủ động (Continuous Automated Red Teaming), trong đó có sự tích hợp với hệ thống quản lý bề mặt tấn công (Attack Surface Management -- ASM). ASM là quy trình liên tục nhằm phát hiện, theo dõi và giảm thiểu các lỗ hổng mà kẻ tấn công có thể khai thác để xâm nhập vào hệ thống. Thay vì chỉ tập trung vào việc vá lỗ hổng đã biết, ASM mở rộng phạm vi giám sát từ tầng hạ tầng mạng, ứng dụng web, API, đến các tài nguyên đám mây và cả những thiết bị IoT, bằng cách kết hợp phương pháp quét thụ động (thu thập thông tin từ DNS, logs chứng chỉ số), quét chủ động (port scanning, web crawling) và tích hợp API từ các nhà cung cấp dịch vụ.
+Mục tiêu của dự án, là xây dựng một hệ thống quản lý bề mặt tấn công mã nguồn mở cho các tổ chức. Hệ thống đáp ứng được các tiêu chí cốt lõi sau
 
-#figure(
-  caption: "Mô tả quy trình của Red Team chủ động kết hợp ASM",
-)[
-  #image("image.png", width: 125%)
-]
+== Báo cáo dự án
 
-Xử lý dữ liệu trong ASM thường bao gồm ba bước chính: thu thập và hợp nhất thông tin tài sản, phân tích và đánh giá mức độ rủi ro dựa trên các chỉ số như độ phổ biến exploit, mức độ phơi bày và tầm quan trọng của tài sản, rồi cuối cùng là cảnh báo và gợi ý hành động. Nền tảng ASM hiện đại thường dùng cơ sở dữ liệu thời gian thực và các mô-đun học máy để tự động nhận diện tài sản mới, so sánh dấu vân (fingerprint) và cập nhật điểm rủi ro một cách linh hoạt khi môi trường thay đổi.
+Báo cáo này được trình bày theo như sau:
 
-Lợi ích rõ nét nhất của ASM là khả năng phát hiện sớm tài sản “ẩn” hoặc cấu hình sai (misconfiguration) trước khi kẻ tấn công khai thác, giúp tổ chức giảm thiểu thời gian phản ứng (MTTR) và cải thiện tuân thủ các tiêu chuẩn bảo mật. Bên cạnh đó, các dashboard trực quan và báo cáo tự động cho phép lãnh đạo dễ dàng theo dõi tiến độ khắc phục, cân nhắc đầu tư và ưu tiên nguồn lực.
+1. Chương 1: Giới thiệu dự án
+2. Chương 2: Trình bày các khái niệm cơ sở về pentest, Red Team và ASM
+3. Chương 3: Thiết kế và triển khai hệ thống ASM phục vụ cho Red Team
+4. Chương 4: Kết quả thực nghiệm
+5. Chương 5: Các định hướng phát triển
