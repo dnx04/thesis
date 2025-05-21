@@ -22,4 +22,11 @@ Giao diện người dùng của hệ thống được thiết kế dưới dạ
 
 == Mục tiêu của dự án
 
-Mục tiêu của dự án, là xây dựng một hệ thống quản lý bề mặt tấn công dễ sử dụng và triển khai, phục vụ cho cả mục đích quản lý và đánh giá an toàn thông tin. Hệ thống đáp ứng được các tiêu chí cốt lõi sau
+Mục tiêu của dự án, là xây dựng một hệ thống quản lý bề mặt tấn công dễ sử dụng và triển khai, phục vụ cho cả mục đích quản lý và đánh giá an toàn thông tin, đáp ứng được các tiêu chí cốt lõi sau:
+
+- Tự động hóa quy trình trinh sát thông tin, giúp tiết kiệm thời gian và công sức cho các đội nhóm kiểm thử xâm nhập.
+- Cung cấp một giao diện người dùng thân thiện, dễ sử dụng, giúp người dùng có thể dễ dàng truy vấn và phân tích dữ liệu.
+- Hỗ trợ các đội nhóm kiểm thử xâm nhập trong việc lập kế hoạch và thực hiện đánh giá an toàn thông tin.
+- Cung cấp các báo cáo định kỳ về tình trạng bề mặt tấn công của tổ chức, giúp các tổ chức có cái nhìn tổng quan về an toàn thông tin, nhất là Shadow IT của đơn vị mình.
+
+

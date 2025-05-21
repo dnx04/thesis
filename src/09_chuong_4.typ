@@ -31,4 +31,30 @@ Tên miền gốc mục tiêu trong kịch bản được lấy từ nhiều ngu
 
 == Kết quả và đánh giá
 
-Kết quả cho thấy ứng dụng hoạt động đúng với mục tiêu đề ra. Các module có khả năng xử lý đúng theo như thiết kế. 
+Kết quả cho thấy ứng dụng hoạt động đúng với các mục tiêu đã đề ra.
+
+=== Giao diện
+
+#image("image-11.png")
+
+#image("image-12.png")
+
+#image("image-14.png")
+
+#image("image-13.png")
+
+#image("image-15.png")
+
+#image("image-16.png")
+
+#image("image-17.png")
+
+#image("image-18.png")
+
+#image("image-19.png")
+
+#image("image-20.png")
+
+#image("image-21.png")
+
+#image("image-22.png")
