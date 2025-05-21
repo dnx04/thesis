@@ -33,6 +33,12 @@ Trong các hình thức đánh giá an toàn thông tin, đặc biệt là Red T
 
 === Bề mặt tấn công (Attack Surface)
 
+#figure(
+  image("image-10.png"),
+  caption: [Bề mặt tấn công số của tổ chức, có thể quản lý bằng External Attack Surface Management (EASM)],
+)
+
+
 Bề mặt tấn công của một tổ chức bao gồm tất cả các thông tin của tổ chức công khai (một cách chủ động hoặc bị động) ra ngoài Internet, trong đó chủ yếu có tên miền, IP, dịch vụ web, hệ thống, ứng dụng, cũng như các thông tin OSINT khác chẳng hạn như thông tin về nhân viên, tài khoản, mật khẩu... Các tài nguyên này có mối liên kết với nhau, từ tài nguyên này có thể khám phá ra tài nguyên khác qua sơ đồ sau:
 
 #figure(
@@ -44,10 +50,11 @@ Bề mặt tấn công của một tổ chức bao gồm tất cả các thông 
 
 Như đã nói ở trên, bước trinh sát thông tin là nút thắt rất quan trọng trong các chiến dịch Red Team.
 
-Một trong những công cụ hữu ích phục vụ cho các tổ chức Red Team là hệ thống quản lý bề mặt tấn công (Attack Surface Management - ASM). Hệ thống này giúp tổ chức phát hiện, phân tích và quản lý các lỗ hổng bảo mật trong hệ thống của mình. ASM cung cấp cái nhìn tổng quan về bề mặt tấn công của tổ chức, từ đó giúp các chuyên gia an ninh mạng xác định các điểm yếu và rủi ro tiềm ẩn. Trong quy trình Red Team chủ động, ASM phục vụ chính trong công cuộc trinh sát thông tin.
+Một trong những công cụ hữu ích phục vụ cho các tổ chức Red Team là hệ thống quản lý bề mặt tấn công (Attack Surface Management - ASM). Hệ thống này giúp tổ chức phát hiện, phân tích và quản lý các lỗ hổng bảo mật trong hệ thống của mình. ASM cung cấp cái nhìn tổng quan về bề mặt tấn công của tổ chức, từ đó giúp các chuyên gia an ninh mạng xác định các điểm yếu và rủi ro tiềm ẩn. Trong quy trình Red Team chủ động, ASM phục vụ chính trong công cuộc trinh sát thông tin, là hệ thống tập trung dữ liệu trinh sát thông tin và từ các nguồn bên thứ ba, giúp người kiểm thử xâm nhập có thể dễ dàng tìm kiếm, phân tích và quản lý các thông tin này. ASM cũng có thể được sử dụng để theo dõi và phát hiện các thay đổi trong bề mặt tấn công của tổ chức theo thời gian thực, từ đó giúp tổ chức nhanh chóng phát hiện và ứng phó với các mối đe dọa mới.
 
 #figure(
   image("image-4.png"),
   caption: [Vòng đời của Red Team, và vai trò của ASM trong quy trình Red Team],
 ) <red-team-lifecycle>
+
 
